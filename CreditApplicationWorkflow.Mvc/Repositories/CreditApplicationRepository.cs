@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CreditApplicationWorkflow.DataAccess;
 
 namespace CreditApplicationWorkflow.Mvc.Models
 {

@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CreditApplicationWorkflow.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace CreditApplicationWorkflow.Mvc.Models
+namespace CreditApplicationWorkflow.DataAccess
 {
     public class AppDbContext : DbContext
     {

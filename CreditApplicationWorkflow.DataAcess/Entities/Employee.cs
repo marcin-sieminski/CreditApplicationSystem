@@ -1,4 +1,4 @@
-﻿namespace CreditApplicationWorkflow.Mvc.Models
+﻿namespace CreditApplicationWorkflow.DataAccess.Entities
 {
     public class Employee
     {

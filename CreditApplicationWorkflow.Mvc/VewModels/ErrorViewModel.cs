@@ -1,6 +1,6 @@
 using System;
 
-namespace CreditApplicationWorkflow.Mvc.Models
+namespace CreditApplicationWorkflow.Viewodels
 {
     public class ErrorViewModel
     {

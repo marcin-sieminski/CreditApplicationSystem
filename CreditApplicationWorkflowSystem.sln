@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationWorkflow.Mvc", "CreditApplicationWorkflow.Mvc\CreditApplicationWorkflow.Mvc.csproj", "{CD303473-A96E-4955-B8F0-BF431FB35D38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplicationWorkflow.DataAcess", "CreditApplicationWorkflow.DataAcess\CreditApplicationWorkflow.DataAcess.csproj", "{F71CD40E-03EE-4FCC-9ED6-2CF330DA4899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplicationWorkflow.DataAccess", "CreditApplicationWorkflow.DataAcess\CreditApplicationWorkflow.DataAccess.csproj", "{F71CD40E-03EE-4FCC-9ED6-2CF330DA4899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
