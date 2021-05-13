@@ -4,14 +4,16 @@ using CreditApplicationWorkflow.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CreditApplicationWorkflow.DataAccess.Migrations
 {
     [DbContext(typeof(CreditApplicationWorkflowDbContext))]
-    partial class CreditApplicationWorkflowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210513222638_ApplicationStatus")]
+    partial class ApplicationStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
