@@ -6,23 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\List.cshtml" />
+    <Content Remove="Views\CreditApplication\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Home\List.cshtml" />
+    <UpToDateCheckInput Remove="Views\CreditApplication\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Home\List.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\CreditApplication\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\List.cshtml" />
+    <None Include="Views\CreditApplication\List.cshtml" />
   </ItemGroup>
 
 </Project>

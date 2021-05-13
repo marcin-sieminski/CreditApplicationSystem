@@ -1,13 +1,10 @@
+using CreditApplicationWorkflow.Mvc.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CreditApplicationWorkflow.Mvc
 {
@@ -22,6 +19,8 @@ namespace CreditApplicationWorkflow.Mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ICreditApplicationRepository, CreditApplicationRepository>();
             services.AddControllersWithViews();
         }
 
@@ -47,7 +46,7 @@ namespace CreditApplicationWorkflow.Mvc
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=CreditApplication}/{action=Index}/{id?}");
             });
         }
     }

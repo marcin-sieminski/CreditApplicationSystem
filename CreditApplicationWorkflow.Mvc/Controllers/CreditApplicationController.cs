@@ -1,19 +1,16 @@
 ﻿using CreditApplicationWorkflow.Mvc.Models;
+using CreditApplicationWorkflow.Mvc.Models.VewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CreditApplicationWorkflow.Mvc.Controllers
 {
-    public class HomeController : Controller
+    public class CreditApplicationController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CreditApplicationController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public CreditApplicationController(ILogger<CreditApplicationController> logger)
         {
             _logger = logger;
         }
@@ -25,7 +22,8 @@ namespace CreditApplicationWorkflow.Mvc.Controllers
 
         public IActionResult List()
         {
-            return View();
+            var model = new CreditApplicationListViewModel{CreditApplications = null};
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
