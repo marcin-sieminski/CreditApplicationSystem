@@ -1,8 +1,11 @@
-﻿namespace CreditApplicationWorkflow.DataAccess.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CreditApplicationWorkflow.DataAccess.Entities
 {
-    public class ProductType
+    public class ProductType : EntityBase
     {
-        public int Id { get; set; }
+        [Required]
+        [MaxLength(250)]
         public string ProductTypeName { get; set; }
     }
 }

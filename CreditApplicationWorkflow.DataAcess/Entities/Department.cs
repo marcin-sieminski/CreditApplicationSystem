@@ -1,8 +1,11 @@
-﻿namespace CreditApplicationWorkflow.DataAccess.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CreditApplicationWorkflow.DataAccess.Entities
 {
-    public class Department
+    public class Department : EntityBase
     {
-        public int Id { get; set; }
+        [Required]
+        [MaxLength(250)]
         public string DepartmentName { get; set; }
     }
 }

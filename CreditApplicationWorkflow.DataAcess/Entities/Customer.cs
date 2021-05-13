@@ -1,8 +1,11 @@
-﻿namespace CreditApplicationWorkflow.DataAccess.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CreditApplicationWorkflow.DataAccess.Entities
 {
-    public class Customer
+    public class Customer : EntityBase
     {
-        public int Id { get; set; }
+        [Required]
+        [MaxLength(500)]
         public string CustomerName { get; set; }
     }
 }

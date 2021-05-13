@@ -1,9 +1,14 @@
-﻿namespace CreditApplicationWorkflow.DataAccess.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CreditApplicationWorkflow.DataAccess.Entities
 {
-    public class Employee
+    public class Employee : EntityBase
     {
-        public int Id { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string FirstName { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string LastName { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
