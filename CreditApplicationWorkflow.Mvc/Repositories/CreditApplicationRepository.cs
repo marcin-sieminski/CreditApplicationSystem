@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CreditApplicationWorkflow.DataAccess;
+using CreditApplicationWorkflow.DataAccess.Entities;
 
-namespace CreditApplicationWorkflow.Mvc.Models
+namespace CreditApplicationWorkflow.Mvc.Repositories
 {
     public class CreditApplicationRepository : ICreditApplicationRepository
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly CreditApplicationWorkflowDbContext _creditApplicationWorkflowDbContext;
 
-        public CreditApplicationRepository(AppDbContext appDbContext)
+        public CreditApplicationRepository(CreditApplicationWorkflowDbContext creditApplicationWorkflowDbContext)
         {
-            _appDbContext = appDbContext;
+            _creditApplicationWorkflowDbContext = creditApplicationWorkflowDbContext;
         }
 
-        public IEnumerable<CreditApplication> GetAllCreditApplications { get => _appDbContext.CreditApplications; }
+        public IEnumerable<CreditApplication> GetAllCreditApplications { get => _creditApplicationWorkflowDbContext.CreditApplications; }
 
         public CreditApplication GetCreditApplicationById(int id)
         {
-            return _appDbContext.CreditApplications.FirstOrDefault(c => c.Id == id);
+            return _creditApplicationWorkflowDbContext.CreditApplications.FirstOrDefault(c => c.Id == id);
         }
     }
 }

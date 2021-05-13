@@ -1,5 +1,5 @@
 using CreditApplicationWorkflow.DataAccess;
-using CreditApplicationWorkflow.Mvc.Models;
+using CreditApplicationWorkflow.Mvc.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +20,6 @@ namespace CreditApplicationWorkflow.Mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICreditApplicationRepository, CreditApplicationRepository>();
             services.AddControllersWithViews();
         }

@@ -1,5 +1,4 @@
-﻿using CreditApplicationWorkflow.Mvc.Models;
-using CreditApplicationWorkflow.Mvc.Models.VewModels;
+﻿using CreditApplicationWorkflow.Mvc.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;

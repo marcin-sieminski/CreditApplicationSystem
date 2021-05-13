@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CreditApplicationWorkflow.DataAccess.Entities;
+using System.Collections.Generic;
 
-namespace CreditApplicationWorkflow.Mvc.VewModels
+namespace CreditApplicationWorkflow.Mvc.ViewModels
 {
     public class CreditApplicationListViewModel
     {
