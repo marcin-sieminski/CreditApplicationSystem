@@ -4,3 +4,15 @@
     Layout = "_Layout";
 }
 <h2>List of all active credit applications</h2>
+
+<div class="container">
+@foreach (var creditApplication in Model.CreditApplications)
+{
+    <div class="container-fluid">
+        <p>ID: <a asp-controller="CreditApplication" asp-action="Details" asp-route-id="@creditApplication.Id">@creditApplication.Id</a></p>
+        <p>Customer name: @creditApplication.Customer.CustomerName</p>
+        <p>Requested amount: @creditApplication.AmountRequested</p>
+        <p>Date of submission: @creditApplication.DateOfSubmission</p>
+    </div>
+}
+</div>

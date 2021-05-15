@@ -20,6 +20,9 @@ namespace CreditApplicationWorkflow.Mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<ICreditApplicationRepository, CreditApplicationRepository>();
             services.AddControllersWithViews();
         }
