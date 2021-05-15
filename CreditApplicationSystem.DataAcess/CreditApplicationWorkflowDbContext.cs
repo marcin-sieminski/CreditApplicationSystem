@@ -21,7 +21,7 @@ namespace CreditApplicationSystem.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            
             // seed data
             modelBuilder.Entity<Customer>().HasData(new Customer
             {

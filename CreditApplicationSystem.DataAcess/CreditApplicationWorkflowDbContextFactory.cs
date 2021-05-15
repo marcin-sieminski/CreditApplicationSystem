@@ -8,7 +8,7 @@ namespace CreditApplicationSystem.DataAccess
         public CreditApplicationWorkflowDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CreditApplicationWorkflowDbContext>();
-            optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=CreditApplicationWorkflow;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=CreditApplicationSystem;Integrated Security=True");
 
             return new CreditApplicationWorkflowDbContext(optionsBuilder.Options);
         }
