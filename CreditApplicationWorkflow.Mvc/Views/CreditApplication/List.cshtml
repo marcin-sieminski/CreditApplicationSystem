@@ -3,18 +3,22 @@
     ViewBag.Title = "List";
     Layout = "_Layout";
 }
-<h2>List of all active credit applications</h2>
+<h3>List of all active credit applications</h3>
+<hr/>
+<table class="table table-sm table-bordered table-hover table-striped">
+    <tr class="thead-light">
+        <th>Id</th><th>Customer</th><th>Amount requested</th><th>Date of submission</th><th>Employee</th><th>Status</th>
+    </tr>
 
-<div class="container">
-@foreach (var creditApplication in Model.CreditApplications)
-{
-    <div class="container-fluid">
-        <p>ID: <a asp-controller="CreditApplication" asp-action="Details" asp-route-id="@creditApplication.Id">@creditApplication.Id</a></p>
-        <p>Customer name: @creditApplication.Customer.CustomerFirstName</p>
-        <p>Customer name: @creditApplication.Customer.CustomerLastName</p>
-        <p>Requested amount: @creditApplication.AmountRequested</p>
-        <p>Date of submission: @creditApplication.DateOfSubmission</p>
-        <p>Employee name: @creditApplication.Employee.FirstName @creditApplication.Employee.LastName</p>
-    </div>
-}
-</div>
+    @foreach (var creditApplication in Model.CreditApplications)
+    {
+        <tr>
+            <td><a asp-controller="CreditApplication" asp-action="Details" asp-route-id="@creditApplication.Id">@creditApplication.Id</a></td>
+            <td>@creditApplication.Customer.CustomerFirstName @creditApplication.Customer.CustomerLastName</td>
+            <td>@creditApplication.AmountRequested</td>
+            <td>@creditApplication.DateOfSubmission</td>
+            <td>@creditApplication.Employee.FirstName @creditApplication.Employee.LastName</td>
+            <td>@creditApplication.ApplicationStatus.ApplicationStatusName</td>
+        </tr>
+    }
+</table>
