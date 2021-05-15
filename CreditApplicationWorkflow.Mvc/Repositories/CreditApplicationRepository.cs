@@ -2,6 +2,7 @@
 using System.Linq;
 using CreditApplicationWorkflow.DataAccess;
 using CreditApplicationWorkflow.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CreditApplicationWorkflow.Mvc.Repositories
 {
@@ -14,7 +15,11 @@ namespace CreditApplicationWorkflow.Mvc.Repositories
             _creditApplicationWorkflowDbContext = creditApplicationWorkflowDbContext;
         }
 
-        public IEnumerable<CreditApplication> GetAllCreditApplications { get => _creditApplicationWorkflowDbContext.CreditApplications; }
+        public IEnumerable<CreditApplication> GetAllCreditApplications { get => _creditApplicationWorkflowDbContext.CreditApplications
+            .Include(x => x.Customer)
+            .Include(x => x.ApplicationStatus)
+            .Include(x => x.Employee)
+            .Include(x => x.ProductType); }
 
         public CreditApplication GetCreditApplicationById(int id)
         {
