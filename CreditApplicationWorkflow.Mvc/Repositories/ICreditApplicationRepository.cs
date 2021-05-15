@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using CreditApplicationWorkflow.DataAccess.Entities;
+﻿using CreditApplicationWorkflow.DataAccess.Entities;
+using System.Collections.Generic;
 
 namespace CreditApplicationWorkflow.Mvc.Repositories
 {
@@ -7,5 +7,6 @@ namespace CreditApplicationWorkflow.Mvc.Repositories
     {
         IEnumerable<CreditApplication> GetAllCreditApplications { get; }
         CreditApplication GetCreditApplicationById(int id);
+        int GetActiveApplicationsNumber { get; }
     }
 }

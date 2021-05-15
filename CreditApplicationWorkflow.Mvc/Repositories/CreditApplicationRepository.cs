@@ -31,5 +31,7 @@ namespace CreditApplicationWorkflow.Mvc.Repositories
                 .FirstOrDefault(c => c.Id == id);
             return creditApplication;
         }
+
+        public int GetActiveApplicationsNumber { get => _creditApplicationWorkflowDbContext.CreditApplications.Count(x => x.IsActive == true); }
     }
 }

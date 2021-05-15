@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomePageViewModel
+@{
     ViewData["Title"] = "CAW Home";
 }
-<p>Active credit applications: </p>
+<h1>Active credit applications: @Model.ActiveCreditApplicationsNumber</h1>

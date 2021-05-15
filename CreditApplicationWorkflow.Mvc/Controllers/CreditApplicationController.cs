@@ -1,8 +1,8 @@
-﻿using CreditApplicationWorkflow.Mvc.ViewModels;
+﻿using CreditApplicationWorkflow.Mvc.Repositories;
+using CreditApplicationWorkflow.Mvc.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using CreditApplicationWorkflow.Mvc.Repositories;
 
 namespace CreditApplicationWorkflow.Mvc.Controllers
 {
@@ -19,7 +19,7 @@ namespace CreditApplicationWorkflow.Mvc.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new HomePageViewModel(){ActiveCreditApplicationsNumber = _creditApplicationRepository.GetActiveApplicationsNumber});
         }
 
         public IActionResult List()
