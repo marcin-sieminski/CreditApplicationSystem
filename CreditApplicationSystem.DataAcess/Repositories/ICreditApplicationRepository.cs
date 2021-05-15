@@ -1,7 +1,7 @@
 ﻿using CreditApplicationSystem.DataAccess.Entities;
 using System.Collections.Generic;
 
-namespace CreditApplicationWorkflow.Mvc.Repositories
+namespace CreditApplicationSystem.DataAccess.Repositories
 {
     public interface ICreditApplicationRepository
     {
