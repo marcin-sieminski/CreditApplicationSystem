@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using CreditApplicationWorkflow.DataAccess;
+﻿using CreditApplicationWorkflow.DataAccess;
 using CreditApplicationWorkflow.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CreditApplicationWorkflow.Mvc.Repositories
 {
@@ -23,7 +23,13 @@ namespace CreditApplicationWorkflow.Mvc.Repositories
 
         public CreditApplication GetCreditApplicationById(int id)
         {
-            return _creditApplicationWorkflowDbContext.CreditApplications.FirstOrDefault(c => c.Id == id);
+            var creditApplication = _creditApplicationWorkflowDbContext.CreditApplications.Where(c => c.Id == id)
+                .Include(x => x.Customer)
+                .Include(x => x.Employee)
+                .Include(x => x.ApplicationStatus)
+                .Include(x => x.ProductType)
+                .FirstOrDefault(c => c.Id == id);
+            return creditApplication;
         }
     }
 }

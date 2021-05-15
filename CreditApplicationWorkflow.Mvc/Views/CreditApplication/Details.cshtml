@@ -8,6 +8,7 @@
 <h2>Credit Application Details</h2>
 <div class="container">
     @Model.Id
-    @Model.Customer
+    @Model.Customer.CustomerFirstName
+    @Model.Customer.CustomerLastName
     @Model.AmountRequested
 </div>

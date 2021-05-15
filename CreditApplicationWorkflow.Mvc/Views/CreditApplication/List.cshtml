@@ -10,7 +10,8 @@
 {
     <div class="container-fluid">
         <p>ID: <a asp-controller="CreditApplication" asp-action="Details" asp-route-id="@creditApplication.Id">@creditApplication.Id</a></p>
-        <p>Customer name: @creditApplication.Customer.CustomerName</p>
+        <p>Customer name: @creditApplication.Customer.CustomerFirstName</p>
+        <p>Customer name: @creditApplication.Customer.CustomerLastName</p>
         <p>Requested amount: @creditApplication.AmountRequested</p>
         <p>Date of submission: @creditApplication.DateOfSubmission</p>
         <p>Employee name: @creditApplication.Employee.FirstName @creditApplication.Employee.LastName</p>

@@ -6,6 +6,10 @@ namespace CreditApplicationWorkflow.DataAccess.Entities
     {
         [Required]
         [MaxLength(500)]
-        public string CustomerName { get; set; }
+        public string CustomerFirstName { get; set; }
+
+        [Required]
+        [MaxLength(500)]
+        public string CustomerLastName { get; set; }
     }
 }

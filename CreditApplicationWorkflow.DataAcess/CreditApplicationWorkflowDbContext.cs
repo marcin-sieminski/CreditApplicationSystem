@@ -26,7 +26,8 @@ namespace CreditApplicationWorkflow.DataAccess
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 Id = 1,
-                CustomerName = "ABC Sp. z o.o."
+                CustomerFirstName = "Anna",
+                CustomerLastName = "Cabacka"
             });
 
             modelBuilder.Entity<Department>().HasData(new Department
