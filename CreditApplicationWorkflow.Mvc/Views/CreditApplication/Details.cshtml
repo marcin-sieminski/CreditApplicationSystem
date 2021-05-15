@@ -6,9 +6,6 @@
 }
 
 <h3>Credit Application Details</h3>
-<div class="container">
-    @Model.Id
-    @Model.Customer.CustomerFirstName
-    @Model.Customer.CustomerLastName
-    @Model.AmountRequested
-</div>
+<hr/>
+<partial name="Partials/ApplicationDetailsPartial" model="Model"/>
+
