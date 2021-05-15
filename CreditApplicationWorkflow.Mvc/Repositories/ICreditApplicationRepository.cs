@@ -1,4 +1,4 @@
-﻿using CreditApplicationWorkflow.DataAccess.Entities;
+﻿using CreditApplicationSystem.DataAccess.Entities;
 using System.Collections.Generic;
 
 namespace CreditApplicationWorkflow.Mvc.Repositories

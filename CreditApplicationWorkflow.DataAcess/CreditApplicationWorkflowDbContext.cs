@@ -1,8 +1,8 @@
-﻿using CreditApplicationWorkflow.DataAccess.Entities;
+﻿using CreditApplicationSystem.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace CreditApplicationWorkflow.DataAccess
+namespace CreditApplicationSystem.DataAccess
 {
     public class CreditApplicationWorkflowDbContext : DbContext
     {
@@ -28,6 +28,12 @@ namespace CreditApplicationWorkflow.DataAccess
                 Id = 1,
                 CustomerFirstName = "Anna",
                 CustomerLastName = "Cabacka"
+            });
+            modelBuilder.Entity<Customer>().HasData(new Customer
+            {
+                Id = 2,
+                CustomerFirstName = "Marcin",
+                CustomerLastName = "Kowalski"
             });
 
             modelBuilder.Entity<Department>().HasData(new Department

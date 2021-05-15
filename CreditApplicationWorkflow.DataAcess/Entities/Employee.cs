@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace CreditApplicationWorkflow.DataAccess.Entities
+namespace CreditApplicationSystem.DataAccess.Entities
 {
     public class Employee : EntityBase
     {
@@ -12,5 +13,7 @@ namespace CreditApplicationWorkflow.DataAccess.Entities
         public string LastName { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
+
+        public List<CreditApplication> CreditApplications { get; set; }
     }
 }

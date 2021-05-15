@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace CreditApplicationWorkflow.DataAccess
+namespace CreditApplicationSystem.DataAccess
 {
     public class CreditApplicationWorkflowDbContextFactory : IDesignTimeDbContextFactory<CreditApplicationWorkflowDbContext>
     {

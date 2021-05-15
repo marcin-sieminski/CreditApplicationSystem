@@ -1,5 +1,5 @@
-﻿using CreditApplicationWorkflow.DataAccess;
-using CreditApplicationWorkflow.DataAccess.Entities;
+﻿using CreditApplicationSystem.DataAccess;
+using CreditApplicationSystem.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

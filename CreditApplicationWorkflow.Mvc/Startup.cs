@@ -1,4 +1,4 @@
-using CreditApplicationWorkflow.DataAccess;
+using CreditApplicationSystem.DataAccess;
 using CreditApplicationWorkflow.Mvc.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

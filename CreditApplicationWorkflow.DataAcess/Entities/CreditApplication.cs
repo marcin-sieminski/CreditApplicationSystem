@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace CreditApplicationWorkflow.DataAccess.Entities
+namespace CreditApplicationSystem.DataAccess.Entities
 {
     public class CreditApplication : EntityBase
     {
