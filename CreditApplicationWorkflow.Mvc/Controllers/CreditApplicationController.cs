@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CreditApplicationWorkflow.Mvc.Controllers
 {
+    [Authorize]
     public class CreditApplicationController : Controller
     {
         private readonly ILogger<CreditApplicationController> _logger;

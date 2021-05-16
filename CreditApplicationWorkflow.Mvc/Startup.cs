@@ -3,6 +3,7 @@ using CreditApplicationSystem.DataAccess.Entities;
 using CreditApplicationSystem.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,11 +24,14 @@ namespace CreditApplicationWorkflow.Mvc
         {
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
+
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
             
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IRepository<CreditApplication>), typeof(CreditApplicationRepository));
 
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,6 +58,7 @@ namespace CreditApplicationWorkflow.Mvc
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=CreditApplication}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
