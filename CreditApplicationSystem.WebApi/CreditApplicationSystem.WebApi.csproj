@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CreditApplicationSystem.ApplicationServices\CreditApplicationSystem.ApplicationServices.csproj" />
     <ProjectReference Include="..\CreditApplicationSystem.DataAcess\CreditApplicationSystem.DataAccess.csproj" />
   </ItemGroup>
 

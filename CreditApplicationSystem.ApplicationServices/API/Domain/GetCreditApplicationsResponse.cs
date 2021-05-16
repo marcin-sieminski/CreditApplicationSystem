@@ -1,6 +1,9 @@
-﻿namespace CreditApplicationSystem.ApplicationServices.API.Domain
+﻿using CreditApplicationSystem.ApplicationServices.API.Domain.Models;
+using System.Collections.Generic;
+
+namespace CreditApplicationSystem.ApplicationServices.API.Domain
 {
-    class GetCreditApplicationsResponse
+    public class GetCreditApplicationsResponse : ResponseBase<List<CreditApplication>>
     {
     }
 }

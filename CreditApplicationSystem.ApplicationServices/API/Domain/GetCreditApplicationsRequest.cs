@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace CreditApplicationSystem.ApplicationServices.API.Domain
 {
-    class GetCreditApplicationsRequest
+    public class GetCreditApplicationsRequest : IRequest<GetCreditApplicationsResponse>
     {
     }
 }

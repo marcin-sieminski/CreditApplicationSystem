@@ -1,6 +1,8 @@
+using CreditApplicationSystem.ApplicationServices.API.Domain;
 using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.Entities;
 using CreditApplicationSystem.DataAccess.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,8 @@ namespace CreditApplicationSystem.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(typeof(ResponseBase<>));
+
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
             
