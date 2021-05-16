@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationWorkflow.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.DataAccess", "CreditApplicationSystem.DataAcess\CreditApplicationSystem.DataAccess.csproj", "{F71CD40E-03EE-4FCC-9ED6-2CF330DA4899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplicationSystem.WebApi", "CreditApplicationSystem.WebApi\CreditApplicationSystem.WebApi.csproj", "{759E6DD4-8E36-4019-B948-8C46ACA38965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.WebApi", "CreditApplicationSystem.WebApi\CreditApplicationSystem.WebApi.csproj", "{759E6DD4-8E36-4019-B948-8C46ACA38965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplicationSystem.ApplicationServices", "CreditApplicationSystem.ApplicationServices\CreditApplicationSystem.ApplicationServices.csproj", "{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{759E6DD4-8E36-4019-B948-8C46ACA38965}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{759E6DD4-8E36-4019-B948-8C46ACA38965}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{759E6DD4-8E36-4019-B948-8C46ACA38965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
