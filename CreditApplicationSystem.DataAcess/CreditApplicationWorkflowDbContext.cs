@@ -1,10 +1,12 @@
 ﻿using CreditApplicationSystem.DataAccess.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace CreditApplicationSystem.DataAccess
 {
-    public class CreditApplicationWorkflowDbContext : DbContext
+    public class CreditApplicationWorkflowDbContext : IdentityDbContext<IdentityUser>
     {
         public CreditApplicationWorkflowDbContext(DbContextOptions<CreditApplicationWorkflowDbContext> options) : base(options)
         {

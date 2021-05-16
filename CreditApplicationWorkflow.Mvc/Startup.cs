@@ -46,6 +46,7 @@ namespace CreditApplicationWorkflow.Mvc
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
