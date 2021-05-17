@@ -1,3 +1,4 @@
+using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.Entities;
 using CreditApplicationSystem.DataAccess.Repositories;
@@ -22,6 +23,8 @@ namespace CreditApplicationWorkflow.Mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
+
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
 
