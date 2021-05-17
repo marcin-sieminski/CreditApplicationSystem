@@ -23,8 +23,8 @@ namespace CreditApplicationSystem.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-            // seed data
+
+           // seed data
             modelBuilder.Entity<Customer>().HasData(new Customer
             {
                 Id = 1,
