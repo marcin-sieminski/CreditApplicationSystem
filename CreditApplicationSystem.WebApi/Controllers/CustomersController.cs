@@ -2,6 +2,7 @@
 using CreditApplicationSystem.DataAccess.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
@@ -17,11 +18,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Customer> GetAllCustomers() => _repository.GetAll();
+        public Task<List<Customer>> GetAllCustomers() => _repository.GetAll();
 
         [HttpGet]
         [Route("{id}")]
-        public Customer GetCustomerById(int id)
+        public Task<Customer> GetCustomerById(int id)
         {
             return _repository.GetById(id);
         }

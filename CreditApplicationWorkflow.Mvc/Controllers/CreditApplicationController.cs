@@ -1,11 +1,12 @@
 ﻿using CreditApplicationSystem.DataAccess.Entities;
 using CreditApplicationSystem.DataAccess.Repositories;
 using CreditApplicationWorkflow.Mvc.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace CreditApplicationWorkflow.Mvc.Controllers
 {
@@ -21,19 +22,20 @@ namespace CreditApplicationWorkflow.Mvc.Controllers
             _creditApplicationRepository = creditApplicationRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(new HomePageViewModel{ActiveCreditApplicationsNumber = _creditApplicationRepository.GetAll().Count()});
+            var result = await _creditApplicationRepository.GetAll();
+            return View(new HomePageViewModel{ActiveCreditApplicationsNumber = result.Count()});
         }
 
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            return View(new CreditApplicationListViewModel{CreditApplications = _creditApplicationRepository.GetAll()});
+            return View(new CreditApplicationListViewModel{CreditApplications = await _creditApplicationRepository.GetAll()});
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View(_creditApplicationRepository.GetById(id));
+            return View(await _creditApplicationRepository.GetById(id));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
