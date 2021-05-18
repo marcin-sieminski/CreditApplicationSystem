@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.DataAccess.Repositories
 {
@@ -17,27 +18,27 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             entities = context.Set<CreditApplication>();
         }
 
-        public IEnumerable<CreditApplication> GetAll()
+        public Task<List<CreditApplication>> GetAll()
         {
             return entities
                 .Include(x => x.Customer)
                 .Include(x => x.ApplicationStatus)
                 .Include(x => x.Employee)
                 .Include(x => x.ProductType)
-                .AsEnumerable();
+                .ToListAsync();
         }
 
-        public CreditApplication GetById(int id)
+        public Task<CreditApplication> GetById(int id)
         {
             return entities
                 .Include(x => x.Customer)
                 .Include(x => x.Employee)
                 .Include(x => x.ApplicationStatus)
                 .Include(x => x.ProductType)
-                .SingleOrDefault(e => e.Id == id);
+                .SingleOrDefaultAsync(e => e.Id == id);
         }
 
-        public void Insert(CreditApplication entity)
+        public Task Insert(CreditApplication entity)
         {
             if (entity == null)
             {
@@ -45,10 +46,10 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             }
 
             entities.Add(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
 
-        public void Update(CreditApplication entity)
+        public Task Update(CreditApplication entity)
         {
             if (entity == null)
             {
@@ -56,10 +57,10 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             }
 
             entities.Update(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public Task Delete(int id)
         {
             CreditApplication entity = entities.SingleOrDefault(e => e.Id == id);
             if (entity == null)
@@ -68,7 +69,7 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             }
 
             entities.Remove(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
 
         public int GetActiveApplicationsNumber { get => entities.Count(x => x.IsActive == true); }
