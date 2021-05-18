@@ -29,6 +29,8 @@ namespace CreditApplicationSystem.WebApi
 
             services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
 
+            services.AddTransient<IQueryExecutor, QueryExecutor>();
+
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
             
