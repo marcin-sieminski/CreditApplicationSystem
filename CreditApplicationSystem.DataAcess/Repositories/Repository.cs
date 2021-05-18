@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.DataAccess.Repositories
 {
@@ -17,17 +18,17 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             entities = context.Set<T>();
         }
 
-        public IEnumerable<T> GetAll()
+        public Task<List<T>> GetAll()
         {
-            return entities.AsEnumerable();
+            return entities.ToListAsync();
         }
 
-        public T GetById(int id)
+        public Task<T> GetById(int id)
         {
-            return entities.SingleOrDefault(e => e.Id == id);
+            return entities.SingleOrDefaultAsync(e => e.Id == id);
         }
 
-        public void Insert(T entity)
+        public Task Insert(T entity)
         {
             if (entity == null)
             {
@@ -35,10 +36,10 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             }
 
             entities.Add(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
 
-        public void Update(T entity)
+        public Task Update(T entity)
         {
             if (entity == null)
             {
@@ -46,10 +47,10 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             }
 
             entities.Update(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public Task Delete(int id)
         {
             T entity = entities.SingleOrDefault(e => e.Id == id);
             if (entity == null)
@@ -58,7 +59,7 @@ namespace CreditApplicationSystem.DataAccess.Repositories
             }
 
             entities.Remove(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
     }
 }

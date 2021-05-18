@@ -19,9 +19,9 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
             _mapper = mapper;
         }
 
-        public Task<GetCreditApplicationsResponse> Handle(GetCreditApplicationsRequest request, CancellationToken cancellationToken)
+        public async Task<GetCreditApplicationsResponse> Handle(GetCreditApplicationsRequest request, CancellationToken cancellationToken)
         {
-            var creditApplications = _creditApplicationRepository.GetAll();
+            var creditApplications = await _creditApplicationRepository.GetAll();
 
             var mappedCreditApplications = _mapper.Map<List<Domain.Models.CreditApplication>>(creditApplications);
 
@@ -29,7 +29,7 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
             {
                 Data = mappedCreditApplications
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }
