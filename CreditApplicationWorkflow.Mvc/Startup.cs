@@ -45,6 +45,7 @@ namespace CreditApplicationWorkflow.Mvc
             }
             else
             {
+                app.UseStatusCodePagesWithReExecute("/{0}");
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
