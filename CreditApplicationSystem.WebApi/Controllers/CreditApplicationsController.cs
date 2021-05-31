@@ -1,6 +1,4 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain;
-using CreditApplicationSystem.DataAccess.Entities;
-using CreditApplicationSystem.DataAccess.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -11,19 +9,24 @@ namespace CreditApplicationSystem.WebApi.Controllers
     [Route("api/[controller]")]
     public class CreditApplicationsController : ControllerBase
     {
-        private readonly IRepository<CreditApplication>  _creditApplicationRepository;
         private readonly IMediator _mediator;
 
-        public CreditApplicationsController(IRepository<CreditApplication> creditApplicationRepository, IMediator mediator)
+        public CreditApplicationsController(IMediator mediator)
         {
-            _creditApplicationRepository = creditApplicationRepository;
             _mediator = mediator;
         }
-
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllCreditApplications([FromQuery] GetCreditApplicationsRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetCreditApplicationById([FromQuery] GetCreditApplicationByIdRequest request, [FromRoute] int id)
         {
             var response = await _mediator.Send(request);
             return Ok(response);

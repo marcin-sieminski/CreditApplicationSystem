@@ -1,0 +1,34 @@
+﻿@model CreditApplicationSystem.ApplicationServices.API.Domain.Models.CreditApplication
+
+<table class="table table-sm table-bordered table-hover table-striped">
+    <tr>
+        <td>Id</td><td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Customer</td><td>@Model.CustomerFirstName @Model.CustomerLastName</td>
+    </tr>
+    <tr>
+        <td>Product type</td><td>@Model.ProductTypeName</td>
+    </tr>
+    <tr>
+        <td>Amount requested</td><td>@Model.AmountRequested</td>
+    </tr>
+    <tr>
+        <td>Amount granted</td><td>@Model.AmountGranted</td>
+    </tr>
+    <tr>
+        <td>Employee</td><td>@Model.EmployeeFirstName @Model.EmployeeLastName</td>
+    </tr>
+    <tr>
+        <td>Date of submission</td><td>@Model.DateOfSubmission</td>
+    </tr>
+    <tr>
+        <td>Status</td><td>@Model.ApplicationStatus</td>
+    </tr>
+    <tr>
+        <td>Date of status change</td><td>@Model.DateOfLastStatusChange</td>
+    </tr>
+    <tr>
+        <td>Notes</td><td>@Model.Notes</td>
+    </tr>
+</table>

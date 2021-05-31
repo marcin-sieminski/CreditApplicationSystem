@@ -1,10 +1,9 @@
-﻿using CreditApplicationSystem.DataAccess.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CreditApplicationWorkflow.Mvc.ViewModels
 {
     public class CreditApplicationListViewModel
     {
-        public IEnumerable<CreditApplication> CreditApplications { get; set; }
+        public List<CreditApplicationSystem.ApplicationServices.API.Domain.Models.CreditApplication> CreditApplications { get; set; }
     }
 }

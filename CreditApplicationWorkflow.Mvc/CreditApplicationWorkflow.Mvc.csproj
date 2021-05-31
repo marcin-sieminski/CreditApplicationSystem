@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\CreditApplication\List.cshtml" />
+    <Content Remove="Views\CreditApplications\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,15 +28,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\CreditApplication\List.cshtml" />
+    <UpToDateCheckInput Remove="Views\CreditApplications\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\CreditApplication\List.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\CreditApplications\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\CreditApplication\List.cshtml" />
+    <None Include="Views\CreditApplications\List.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

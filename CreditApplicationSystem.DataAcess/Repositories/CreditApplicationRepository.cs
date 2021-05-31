@@ -9,18 +9,18 @@ namespace CreditApplicationSystem.DataAccess.Repositories
 {
     public class CreditApplicationRepository : IRepository<CreditApplication>
     {
-        protected readonly CreditApplicationWorkflowDbContext context;
-        private DbSet<CreditApplication> entities;
+        private readonly CreditApplicationWorkflowDbContext _context;
+        private DbSet<CreditApplication> _entities;
 
         public CreditApplicationRepository(CreditApplicationWorkflowDbContext context)
         {
-            this.context = context;
-            entities = context.Set<CreditApplication>();
+            _context = context;
+            _entities = context.Set<CreditApplication>();
         }
 
         public Task<List<CreditApplication>> GetAll()
         {
-            return entities
+            return _entities
                 .Include(x => x.Customer)
                 .Include(x => x.ApplicationStatus)
                 .Include(x => x.Employee)
@@ -30,7 +30,7 @@ namespace CreditApplicationSystem.DataAccess.Repositories
 
         public Task<CreditApplication> GetById(int id)
         {
-            return entities
+            return _entities
                 .Include(x => x.Customer)
                 .Include(x => x.Employee)
                 .Include(x => x.ApplicationStatus)
@@ -45,8 +45,8 @@ namespace CreditApplicationSystem.DataAccess.Repositories
                 throw new ArgumentNullException("entity");
             }
 
-            entities.Add(entity);
-            return context.SaveChangesAsync();
+            _entities.Add(entity);
+            return _context.SaveChangesAsync();
         }
 
         public Task Update(CreditApplication entity)
@@ -56,22 +56,22 @@ namespace CreditApplicationSystem.DataAccess.Repositories
                 throw new ArgumentNullException("entity");
             }
 
-            entities.Update(entity);
-            return context.SaveChangesAsync();
+            _entities.Update(entity);
+            return _context.SaveChangesAsync();
         }
 
         public Task Delete(int id)
         {
-            CreditApplication entity = entities.SingleOrDefault(e => e.Id == id);
+            CreditApplication entity = _entities.SingleOrDefault(e => e.Id == id);
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
 
-            entities.Remove(entity);
-            return context.SaveChangesAsync();
+            _entities.Remove(entity);
+            return _context.SaveChangesAsync();
         }
 
-        public int GetActiveApplicationsNumber { get => entities.Count(x => x.IsActive == true); }
+        public int GetActiveApplicationsNumber { get => _entities.Count(x => x.IsActive == true); }
     }
 }

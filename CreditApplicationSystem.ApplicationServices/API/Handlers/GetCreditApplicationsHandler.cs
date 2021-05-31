@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using CreditApplicationSystem.ApplicationServices.API.Domain;
-using CreditApplicationSystem.DataAccess.Repositories;
+using CreditApplicationSystem.DataAccess;
+using CreditApplicationSystem.DataAccess.CQRS.Queries;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using CreditApplicationSystem.DataAccess;
-using CreditApplicationSystem.DataAccess.CQRS.Queries;
 
 namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 {
@@ -32,6 +31,7 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
             {
                 Data = mappedCreditApplications
             };
+
             return response;
         }
     }

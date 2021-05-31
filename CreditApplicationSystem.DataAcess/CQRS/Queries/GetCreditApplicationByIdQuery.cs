@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.DataAccess.CQRS.Queries
 {
-    public class GetCreditApplicationQuery : QueryBase<CreditApplication>
+    public class GetCreditApplicationByIdQuery : QueryBase<CreditApplication>
     {
         public int Id { get; set; }
 
