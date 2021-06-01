@@ -1,7 +1,7 @@
 ﻿using CreditApplicationSystem.DataAccess.CQRS.Queries;
 using System.Threading.Tasks;
 
-namespace CreditApplicationSystem.DataAccess
+namespace CreditApplicationSystem.DataAccess.CQRS
 {
     public class QueryExecutor : IQueryExecutor
     {

@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CreditApplicationSystem.ApplicationServices.API.Domain;
 using CreditApplicationSystem.ApplicationServices.API.Domain.Models;
-using CreditApplicationSystem.DataAccess;
+using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.CQRS.Queries;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 {

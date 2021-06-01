@@ -1,7 +1,7 @@
-﻿using CreditApplicationSystem.DataAccess.Entities;
-using CreditApplicationSystem.DataAccess.Repositories;
+﻿using CreditApplicationSystem.ApplicationServices.API.Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
@@ -10,21 +10,26 @@ namespace CreditApplicationSystem.WebApi.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        private readonly IRepository<Customer> _repository;
+        private readonly IMediator _mediator;
 
-        public CustomersController(IRepository<Customer> repository)
+        public CustomersController(IMediator mediator)
         {
-            _repository = repository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public Task<List<Customer>> GetAllCustomers() => _repository.GetAll();
+        [Route("")]
+        public async Task<IActionResult> GetAllCustomers([FromQuery] GetCustomersRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
 
         [HttpGet]
         [Route("{id}")]
-        public Task<Customer> GetCustomerById(int id)
+        public async Task<IActionResult> GetCustomerById()
         {
-            return _repository.GetById(id);
+            throw new NotImplementedException();
         }
     }
 }

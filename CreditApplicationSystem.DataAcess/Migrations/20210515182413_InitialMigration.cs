@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace CreditApplicationSystem.DataAccess.Migrations
 {
@@ -21,7 +21,7 @@ namespace CreditApplicationSystem.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
+                name: "CustomersController",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -110,7 +110,7 @@ namespace CreditApplicationSystem.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_CreditApplications_Customers_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customers",
+                        principalTable: "CustomersController",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -133,7 +133,7 @@ namespace CreditApplicationSystem.DataAccess.Migrations
                 values: new object[] { 1, "Initial check" });
 
             migrationBuilder.InsertData(
-                table: "Customers",
+                table: "CustomersController",
                 columns: new[] { "Id", "CustomerFirstName", "CustomerLastName" },
                 values: new object[,]
                 {
@@ -196,7 +196,7 @@ namespace CreditApplicationSystem.DataAccess.Migrations
                 name: "ApplicationStatus");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "CustomersController");
 
             migrationBuilder.DropTable(
                 name: "Employees");

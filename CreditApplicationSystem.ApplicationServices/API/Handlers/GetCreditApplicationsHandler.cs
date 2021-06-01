@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CreditApplicationSystem.ApplicationServices.API.Domain;
-using CreditApplicationSystem.DataAccess;
+using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.CQRS.Queries;
 using MediatR;
 using System.Collections.Generic;

@@ -1,6 +1,7 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
@@ -26,10 +27,9 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetCreditApplicationById([FromQuery] GetCreditApplicationByIdRequest request, [FromRoute] int id)
+        public async Task<IActionResult> GetCreditApplicationById()
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            throw new NotImplementedException();
         }
     }
 }

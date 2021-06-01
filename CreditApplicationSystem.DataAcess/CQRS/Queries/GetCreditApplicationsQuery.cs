@@ -7,7 +7,6 @@ namespace CreditApplicationSystem.DataAccess.CQRS.Queries
 {
     public class GetCreditApplicationsQuery : QueryBase<List<CreditApplication>>
     {
-
         public override Task<List<CreditApplication>> Execute(CreditApplicationWorkflowDbContext context)
         {
             return context.CreditApplications

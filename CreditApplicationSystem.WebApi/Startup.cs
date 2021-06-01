@@ -1,6 +1,7 @@
 using CreditApplicationSystem.ApplicationServices.API.Domain;
 using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
+using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,7 @@ namespace CreditApplicationSystem.WebApi
             services.AddMediatR(typeof(ResponseBase<>));
             services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
             services.AddTransient<IQueryExecutor, QueryExecutor>();
+            services.AddTransient<ICommandExecutor, CommandExecutor>();
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
