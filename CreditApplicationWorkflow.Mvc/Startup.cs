@@ -36,7 +36,6 @@ namespace CreditApplicationWorkflow.Mvc
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
             
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            //services.AddScoped(typeof(IRepository<CreditApplication>), typeof(CreditApplicationRepository));
 
             services.AddControllersWithViews();
             services.AddRazorPages();

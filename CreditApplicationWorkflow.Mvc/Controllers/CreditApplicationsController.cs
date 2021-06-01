@@ -12,11 +12,9 @@ namespace CreditApplicationWorkflow.Mvc.Controllers
     public class CreditApplicationsController : Controller
     {
         private readonly IMediator _mediator;
-        //private readonly IRepository<CreditApplication> _creditApplicationRepository;
 
         public CreditApplicationsController(IMediator mediator)
         {
-            //_creditApplicationRepository = creditApplicationRepository;
             _mediator = mediator;
         }
 
