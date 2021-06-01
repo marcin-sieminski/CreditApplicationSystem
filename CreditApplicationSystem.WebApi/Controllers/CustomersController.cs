@@ -1,4 +1,4 @@
-﻿using CreditApplicationSystem.ApplicationServices.API.Domain;
+﻿using CreditApplicationSystem.ApplicationServices.API.Domain.Customer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +30,14 @@ namespace CreditApplicationSystem.WebApi.Controllers
         public async Task<IActionResult> GetCustomerById()
         {
             throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

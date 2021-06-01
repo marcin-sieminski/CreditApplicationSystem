@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CreditApplicationSystem.ApplicationServices.API.Domain;
+using CreditApplicationSystem.ApplicationServices.API.Domain.Customer;
 using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.CQRS.Queries;
 using MediatR;

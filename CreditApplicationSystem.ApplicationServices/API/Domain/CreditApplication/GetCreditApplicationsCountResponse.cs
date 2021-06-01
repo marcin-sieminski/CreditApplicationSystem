@@ -1,4 +1,4 @@
-﻿namespace CreditApplicationSystem.ApplicationServices.API.Domain
+﻿namespace CreditApplicationSystem.ApplicationServices.API.Domain.CreditApplication
 {
     public class GetCreditApplicationsCountResponse : ResponseBase<int>
     {

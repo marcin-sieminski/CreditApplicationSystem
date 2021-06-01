@@ -1,4 +1,4 @@
-﻿using CreditApplicationSystem.ApplicationServices.API.Domain;
+﻿using CreditApplicationSystem.ApplicationServices.API.Domain.CreditApplication;
 using CreditApplicationWorkflow.Mvc.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
