@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/customers")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
