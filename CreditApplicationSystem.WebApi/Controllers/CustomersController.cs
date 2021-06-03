@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
-    [Route("api/customers")]
     [ApiController]
+    [Route("api/customers")]
     public class CustomersController : ControllerBase
     {
         private readonly IMediator _mediator;

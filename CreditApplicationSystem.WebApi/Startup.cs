@@ -6,6 +6,7 @@ using CreditApplicationSystem.DataAccess.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,9 +35,16 @@ namespace CreditApplicationSystem.WebApi
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
             
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            //services.AddScoped(typeof(IRepository<CreditApplication>), typeof(CreditApplicationRepository));
 
             services.AddControllers();
+
+            services.Configure<RouteOptions>(options =>
+            {
+                options.AppendTrailingSlash = true;
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CreditApplicationSystem.WebApi", Version = "v1" });

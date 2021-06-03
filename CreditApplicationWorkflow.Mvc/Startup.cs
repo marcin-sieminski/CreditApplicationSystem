@@ -3,10 +3,13 @@ using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.Repositories;
+using CreditApplicationWorkflow.Mvc.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +41,17 @@ namespace CreditApplicationWorkflow.Mvc
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddRazorPages()
+                .AddRazorPagesOptions(opts =>
+                {
+                    opts.Conventions.Add(new PageRouteTransformerConvention(new KebabCaseParameterTransformer()));
+                });
+            services.Configure<RouteOptions>(options =>
+            {
+                options.AppendTrailingSlash = true;
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -65,7 +78,7 @@ namespace CreditApplicationWorkflow.Mvc
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=CreditApplications}/{action=Index}/{id?}");
+                    pattern: "{controller=creditapplications}/{action=index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
