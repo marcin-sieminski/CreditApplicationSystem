@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CreditApplicationSystem.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/customers")]
+    [Route("api/[controller]")]
     public class CustomersController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,7 +19,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllCustomers([FromQuery] GetCustomersRequest request)
+        public async Task<IActionResult> Get([FromQuery] GetCustomersRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);

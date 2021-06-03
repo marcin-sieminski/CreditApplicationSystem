@@ -22,7 +22,10 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 
         public async Task<GetCustomersResponse> Handle(GetCustomersRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetCustomersQuery();
+            var query = new GetCustomersQuery()
+            {
+                Name = request.Name
+            };
             var customers = await _queryExecutor.Execute(query);
             var mappedCustomers = _mapper.Map<List<Domain.Models.Customer>>(customers);
             
