@@ -2,4 +2,8 @@
 @{
     ViewData["Title"] = "Home";
 }
-<h3>Active credit applications: @Model.ActiveCreditApplicationsNumber</h3>
+<div class="">
+    <p class="creditApplicationCountLabel">Active credit applications:</p>
+    <p class="creditApplicationCount">@Model.ActiveCreditApplicationsNumber</p>
+    <a asp-controller="CreditApplications" asp-action="Index">Refresh</a>
+</div>
