@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace CreditApplicationSystem.WebApi
 {
@@ -36,7 +37,8 @@ namespace CreditApplicationSystem.WebApi
             
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             services.Configure<RouteOptions>(options =>
             {

@@ -1,6 +1,7 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain.CreditApplication;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
@@ -11,22 +12,32 @@ namespace CreditApplicationSystem.WebApi.Controllers
     public class CreditApplicationsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<CreditApplicationsController> _logger;
 
-        public CreditApplicationsController(IMediator mediator)
+        public CreditApplicationsController(IMediator mediator, ILogger<CreditApplicationsController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllCreditApplications([FromQuery] GetCreditApplicationsRequest request)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to get credit applications: {e}");
+                return BadRequest("Failed to get credit applications");
+            }
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> GetCreditApplicationById()
         {
             throw new NotImplementedException();

@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace CreditApplicationWorkflow.Mvc
 {
@@ -40,7 +41,9 @@ namespace CreditApplicationWorkflow.Mvc
             
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
             services.AddRazorPages()
                 .AddRazorPagesOptions(opts =>
                 {

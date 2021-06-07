@@ -1,6 +1,8 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain.Customer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
@@ -10,38 +12,64 @@ namespace CreditApplicationSystem.WebApi.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<CustomersController> _logger;
 
-        public CustomersController(IMediator mediator)
+        public CustomersController(IMediator mediator, ILogger<CustomersController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> Get([FromQuery] GetCustomersRequest request)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to get customers: {e}");
+                return BadRequest("Failed to get customers");
+            }
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> GetCustomerById([FromRoute] int id)
         {
-            var request = new GetCustomerByIdRequest()
+            try
             {
-                Id = id
-            };
-            var response = await _mediator.Send(request);
-            return Ok(response);
+                var request = new GetCustomerByIdRequest()
+                {
+                    Id = id
+                };
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to get customer: {e}");
+                return NotFound("Failed to get customer");
+            }
         }
 
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to add customer: {e}");
+                return BadRequest("Failed to add customer");
+            }
         }
     }
 }
