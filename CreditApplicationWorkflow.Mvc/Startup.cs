@@ -36,7 +36,6 @@ namespace CreditApplicationWorkflow.Mvc
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
-
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
             
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
