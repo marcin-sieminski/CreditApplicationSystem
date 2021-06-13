@@ -36,11 +36,12 @@ namespace CreditApplicationSystem.WebApi
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
             
-            services.AddIdentity<IdentityUser, IdentityRole>(cfg => cfg.User.RequireUniqueEmail = true)
+            services.AddDefaultIdentity<IdentityUser>(cfg => cfg.User.RequireUniqueEmail = true)
                 .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
+            
             services.AddAuthentication()
-                .AddCookie()
-                .AddJwtBearer();
+                    .AddCookie()
+                    .AddJwtBearer();
                 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 

@@ -1,17 +1,14 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain.Customer;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CustomersController : ControllerBase
     {
         private readonly IMediator _mediator;
