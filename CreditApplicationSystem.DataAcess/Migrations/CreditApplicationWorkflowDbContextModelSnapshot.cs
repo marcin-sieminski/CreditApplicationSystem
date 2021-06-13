@@ -100,8 +100,8 @@ namespace CreditApplicationSystem.DataAccess.Migrations
                             AmountRequested = 100000m,
                             ApplicationStatusId = 1,
                             CustomerId = 1,
-                            DateOfLastStatusChange = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
-                            DateOfSubmission = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateOfLastStatusChange = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateOfSubmission = new DateTime(2021, 6, 13, 0, 0, 0, 0, DateTimeKind.Local),
                             EmployeeId = 1,
                             IsActive = true,
                             Notes = "",
@@ -128,7 +128,7 @@ namespace CreditApplicationSystem.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomersController");
+                    b.ToTable("Customers");
 
                     b.HasData(
                         new
