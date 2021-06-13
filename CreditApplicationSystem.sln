@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.ApplicationServices", "CreditApplicationSystem.ApplicationServices\CreditApplicationSystem.ApplicationServices.csproj", "{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplicationSystem.Tests", "CreditApplicationSystem.Tests\CreditApplicationSystem.Tests.csproj", "{43AF03E3-3F5F-4E22-B9BD-59F9AE092016}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{467B54DF-1027-4A33-B2E9-B7DC51CCC9C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43AF03E3-3F5F-4E22-B9BD-59F9AE092016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43AF03E3-3F5F-4E22-B9BD-59F9AE092016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43AF03E3-3F5F-4E22-B9BD-59F9AE092016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43AF03E3-3F5F-4E22-B9BD-59F9AE092016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

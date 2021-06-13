@@ -2,17 +2,28 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using Microsoft.AspNetCore.Identity;
 
 namespace CreditApplicationSystem.DataAccess
 {
     public class CreditApplicationWorkflowDbContext : IdentityDbContext
     {
-        public CreditApplicationWorkflowDbContext(DbContextOptions<CreditApplicationWorkflowDbContext> options) : base(options)
+        public CreditApplicationWorkflowDbContext()
         {
             
         }
 
+        public CreditApplicationWorkflowDbContext(DbContextOptions options) : base(options)
+        {
+            
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=CreditApplicationSystem;Integrated Security=True");
+            }
+        }
 
         public DbSet<CreditApplication> CreditApplications { get; set; }
         public DbSet<Customer> Customers { get; set; }
