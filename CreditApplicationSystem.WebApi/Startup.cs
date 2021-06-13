@@ -6,6 +6,7 @@ using CreditApplicationSystem.DataAccess.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,12 @@ namespace CreditApplicationSystem.WebApi
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
             
+            services.AddIdentity<IdentityUser, IdentityRole>(cfg => cfg.User.RequireUniqueEmail = true)
+                .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer();
+                
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddControllers()
