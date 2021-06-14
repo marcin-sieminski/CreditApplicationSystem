@@ -15,6 +15,7 @@ namespace CreditApplicationSystem.Tests
             builder.UseInMemoryDatabase("CanInsertCustomer");
             using var context = new CreditApplicationWorkflowDbContext(builder.Options);
             var customer = new Customer();
+
             context.Customers.Add(customer);
 
             Assert.AreEqual(EntityState.Added, context.Entry(customer).State);
