@@ -10,6 +10,7 @@ namespace CreditApplicationSystem.ApplicationServices.Mappings
         {
             CreateMap<Customer, API.Domain.Models.Customer>();
             CreateMap<AddCustomerRequest, Customer>();
+            CreateMap<EditCustomerRequest, Customer>();
         }
     }
 }

@@ -71,5 +71,21 @@ namespace CreditApplicationSystem.WebApi.Controllers
                 return BadRequest("Failed to add customer");
             }
         }
+
+        [HttpPut]
+        [Route("")]
+        public async Task<IActionResult> EditCustomer([FromBody] EditCustomerRequest request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to edit customer: {e}");
+                return BadRequest("Failed to edit customer");
+            }
+        }
     }
 }
