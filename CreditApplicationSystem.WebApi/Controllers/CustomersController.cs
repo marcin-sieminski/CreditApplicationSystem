@@ -87,5 +87,21 @@ namespace CreditApplicationSystem.WebApi.Controllers
                 return BadRequest("Failed to edit customer");
             }
         }
+
+        [HttpDelete]
+        [Route("")]
+        public async Task<IActionResult> DeleteCustomer([FromBody] DeleteCustomerRequest request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to delete customer: {e}");
+                return BadRequest("Failed to delete customer");
+            }
+        }
     }
 }
