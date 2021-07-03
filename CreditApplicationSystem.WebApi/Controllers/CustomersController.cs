@@ -22,7 +22,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> Get([FromQuery] GetCustomersRequest request)
+        public async Task<IActionResult> GetCustomers([FromQuery] GetCustomersRequest request)
         {
             try
             {

@@ -4,6 +4,6 @@ namespace CreditApplicationSystem.ApplicationServices.API.Domain.CreditApplicati
 {
     public class GetCreditApplicationByIdRequest : IRequest<GetCreditApplicationByIdResponse>
     {
-        
+        public int Id { get; set; }
     }
 }

@@ -38,9 +38,22 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<IActionResult> GetCreditApplicationById()
+        public async Task<IActionResult> GetCreditApplicationById([FromRoute] int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var request = new GetCreditApplicationByIdRequest()
+                {
+                    Id = id
+                };
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to get credit application: {e}");
+                return BadRequest("Failed to get credit application");
+            }
         }
     }
 }

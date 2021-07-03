@@ -22,7 +22,10 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 
         public async Task<GetCreditApplicationByIdResponse> Handle(GetCreditApplicationByIdRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetCreditApplicationByIdQuery();
+            var query = new GetCreditApplicationByIdQuery()
+            {
+                Id = request.Id
+            };
             var creditApplication = await _queryExecutor.Execute(query);
 
             var mappedCreditApplication = _mapper.Map<CreditApplication>(creditApplication);
