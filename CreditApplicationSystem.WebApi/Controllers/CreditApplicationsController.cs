@@ -22,7 +22,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllCreditApplications([FromQuery] GetCreditApplicationsRequest request)
+        public async Task<IActionResult> GetCreditApplications([FromQuery] GetCreditApplicationsRequest request)
         {
             try
             {
@@ -53,6 +53,54 @@ namespace CreditApplicationSystem.WebApi.Controllers
             {
                 _logger.LogError($"Failed to get credit application: {e}");
                 return BadRequest("Failed to get credit application");
+            }
+        }
+
+        //[HttpPost]
+        //[Route("")]
+        //public async Task<IActionResult> AddCreditApplication([FromBody] AddCreditApplicationRequest request)
+        //{
+        //    try
+        //    {
+        //        var response = await _mediator.Send(request);
+        //        return Ok(response);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        _logger.LogError($"Failed to add credit application: {e}");
+        //        return BadRequest("Failed to add credit application");
+        //    }
+        //}
+
+        //[HttpPut]
+        //[Route("")]
+        //public async Task<IActionResult> EditCreditApplication([FromBody] EditCreditApplicationRequest request)
+        //{
+        //    try
+        //    {
+        //        var response = await _mediator.Send(request);
+        //        return Ok(response);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        _logger.LogError($"Failed to edit credit application: {e}");
+        //        return BadRequest("Failed to edit credit application");
+        //    }
+        //}
+
+        [HttpDelete]
+        [Route("")]
+        public async Task<IActionResult> DeleteCreditApplication([FromBody] DeleteCreditApplicationRequest request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to delete credit application: {e}");
+                return BadRequest("Failed to delete credit application");
             }
         }
     }
