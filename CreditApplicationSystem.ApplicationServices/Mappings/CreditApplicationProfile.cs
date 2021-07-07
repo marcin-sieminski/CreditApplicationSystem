@@ -15,7 +15,7 @@ namespace CreditApplicationSystem.ApplicationServices.Mappings
                 .ForMember(x => x.EmployeeFirstName, y => y.MapFrom(z => z.Employee.FirstName))
                 .ForMember(x => x.EmployeeLastName, y => y.MapFrom(z => z.Employee.LastName));
 
-            CreateMap<DataAccess.Entities.Customer, API.Domain.Models.Customer>();
+            CreateMap<DataAccess.Entities.CreditApplication, API.Domain.Models.CreditApplication>();
 
             CreateMap<AddCreditApplicationRequest, DataAccess.Entities.CreditApplication>()
                 .ForMember(x => x.DateOfSubmission, y => y.MapFrom(z => z.DateOfSubmission))
@@ -28,7 +28,18 @@ namespace CreditApplicationSystem.ApplicationServices.Mappings
                 .ForMember(x => x.EmployeeId, y => y.MapFrom(z => z.EmployeeId))
                 .ForMember(x => x.Notes, y => y.MapFrom(z => z.Notes))
                 .ForMember(x => x.IsActive, y => y.MapFrom(z => z.IsActive));
-
+            
+            CreateMap<EditCreditApplicationRequest, DataAccess.Entities.CreditApplication>()
+                .ForMember(x => x.DateOfSubmission, y => y.MapFrom(z => z.DateOfSubmission))
+                .ForMember(x => x.CustomerId, y => y.MapFrom(z => z.CustomerId))
+                .ForMember(x => x.ProductTypeId, y => y.MapFrom(z => z.ProductTypeId))
+                .ForMember(x => x.AmountRequested, y => y.MapFrom(z => z.AmountRequested))
+                .ForMember(x => x.AmountGranted, y => y.MapFrom(z => z.AmountGranted))
+                .ForMember(x => x.ApplicationStatusId, y => y.MapFrom(z => z.ApplicationStatusId))
+                .ForMember(x => x.DateOfLastStatusChange, y => y.MapFrom(z => z.DateOfLastStatusChange))
+                .ForMember(x => x.EmployeeId, y => y.MapFrom(z => z.EmployeeId))
+                .ForMember(x => x.Notes, y => y.MapFrom(z => z.Notes))
+                .ForMember(x => x.IsActive, y => y.MapFrom(z => z.IsActive));
         }
     }
 }

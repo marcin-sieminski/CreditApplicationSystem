@@ -72,21 +72,21 @@ namespace CreditApplicationSystem.WebApi.Controllers
             }
         }
 
-        //[HttpPut]
-        //[Route("")]
-        //public async Task<IActionResult> EditCreditApplication([FromBody] EditCreditApplicationRequest request)
-        //{
-        //    try
-        //    {
-        //        var response = await _mediator.Send(request);
-        //        return Ok(response);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _logger.LogError($"Failed to edit credit application: {e}");
-        //        return BadRequest("Failed to edit credit application");
-        //    }
-        //}
+        [HttpPut]
+        [Route("")]
+        public async Task<IActionResult> EditCreditApplication([FromBody] EditCreditApplicationRequest request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to edit credit application: {e}");
+                return BadRequest("Failed to edit credit application");
+            }
+        }
 
         [HttpDelete]
         [Route("")]
