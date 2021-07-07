@@ -56,21 +56,21 @@ namespace CreditApplicationSystem.WebApi.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("")]
-        //public async Task<IActionResult> AddCreditApplication([FromBody] AddCreditApplicationRequest request)
-        //{
-        //    try
-        //    {
-        //        var response = await _mediator.Send(request);
-        //        return Ok(response);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _logger.LogError($"Failed to add credit application: {e}");
-        //        return BadRequest("Failed to add credit application");
-        //    }
-        //}
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> AddCreditApplication([FromBody] AddCreditApplicationRequest request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed to add credit application: {e}");
+                return BadRequest("Failed to add credit application");
+            }
+        }
 
         //[HttpPut]
         //[Route("")]
