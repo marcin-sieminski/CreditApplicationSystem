@@ -7,8 +7,8 @@ namespace CreditApplicationSystem.ApplicationServices.API.Validators
     {
         public AddCustomerRequestValidator()
         {
-            RuleFor(x => x.CustomerFirstName).Length(3);
-            RuleFor(x => x.CustomerLastName).Length(3);
+            RuleFor(x => x.CustomerFirstName).Length(3, 200);
+            RuleFor(x => x.CustomerLastName).Length(3, 200);
         }
     }
 }
