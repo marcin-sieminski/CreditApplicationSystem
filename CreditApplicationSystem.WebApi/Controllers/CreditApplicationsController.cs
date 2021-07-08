@@ -63,7 +63,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
             try
             {
                 var response = await _mediator.Send(request);
-                return Ok(response);
+                return Created($"/api/credit-applications/{response.Data.Id}", null);
             }
             catch (Exception e)
             {
