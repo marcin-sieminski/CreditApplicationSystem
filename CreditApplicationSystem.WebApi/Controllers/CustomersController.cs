@@ -60,6 +60,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
         [Route("")]
         public async Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Failed to add customer");
+            }
+
             try
             {
                 var response = await _mediator.Send(request);
