@@ -2,111 +2,54 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CustomersController : ControllerBase
+    public class CustomersController : ApiControllerBase
     {
-        private readonly IMediator _mediator;
         private readonly ILogger<CustomersController> _logger;
 
-        public CustomersController(IMediator mediator, ILogger<CustomersController> logger)
+        public CustomersController(IMediator mediator, ILogger<CustomersController> logger) : base(mediator)
         {
-            _mediator = mediator;
             _logger = logger;
         }
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetCustomers([FromQuery] GetCustomersRequest request)
+        public Task<IActionResult> GetCustomers([FromQuery] GetCustomersRequest request)
         {
-            try
-            {
-                var response = await _mediator.Send(request);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Failed to get customers: {e}");
-                return BadRequest("Failed to get customers");
-            }
+            return HandleRequest<GetCustomersRequest, GetCustomersResponse>(request);
         }
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<IActionResult> GetCustomerById([FromRoute] int id)
+        public Task<IActionResult> GetCustomerById([FromRoute] int id)
         {
-            try
-            {
-                var request = new GetCustomerByIdRequest()
-                {
-                    Id = id
-                };
-                var response = await _mediator.Send(request);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Failed to get customer: {e}");
-                return NotFound("Failed to get customer");
-            }
+            return HandleRequest<GetCustomerByIdRequest, GetCustomerByIdResponse>(new GetCustomerByIdRequest { Id = id });
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
+        public Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Failed to add customer");
-            }
-
-            try
-            {
-                var response = await _mediator.Send(request);
-                return Created($"/api/customers/{response.Data.Id}", null);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Failed to add customer: {e}");
-                return BadRequest("Failed to add customer");
-            }
+            return HandleRequest<AddCustomerRequest, AddCustomerResponse>(request);
         }
 
         [HttpPut]
         [Route("")]
-        public async Task<IActionResult> EditCustomer([FromBody] EditCustomerRequest request)
+        public Task<IActionResult> EditCustomer([FromBody] EditCustomerRequest request)
         {
-            try
-            {
-                var response = await _mediator.Send(request);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Failed to edit customer: {e}");
-                return BadRequest("Failed to edit customer");
-            }
+            return HandleRequest<EditCustomerRequest, EditCustomerResponse>(request);
         }
 
         [HttpDelete]
         [Route("")]
-        public async Task<IActionResult> DeleteCustomer([FromBody] DeleteCustomerRequest request)
+        public Task<IActionResult> DeleteCustomer([FromBody] DeleteCustomerRequest request)
         {
-            try
-            {
-                var response = await _mediator.Send(request);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Failed to delete customer: {e}");
-                return BadRequest("Failed to delete customer");
-            }
+            return HandleRequest<DeleteCustomerRequest, DeleteCustomerResponse>(request);
         }
     }
 }

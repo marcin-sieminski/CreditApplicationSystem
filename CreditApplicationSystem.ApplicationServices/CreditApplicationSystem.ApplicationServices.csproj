@@ -16,4 +16,8 @@
     <ProjectReference Include="..\CreditApplicationSystem.DataAcess\CreditApplicationSystem.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="API\ErrorHandling\" />
+  </ItemGroup>
+
 </Project>
