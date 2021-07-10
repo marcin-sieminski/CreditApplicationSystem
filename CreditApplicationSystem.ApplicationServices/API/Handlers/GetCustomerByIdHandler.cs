@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using CreditApplicationSystem.ApplicationServices.API.Domain;
 using CreditApplicationSystem.ApplicationServices.API.Domain.Customer;
 using CreditApplicationSystem.ApplicationServices.API.Domain.Models;
+using CreditApplicationSystem.ApplicationServices.API.ErrorHandling;
 using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.CQRS.Queries;
 using MediatR;
@@ -29,12 +31,21 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
             };
             var customer = await _queryExecutor.Execute(query);
 
+            if (customer == null)
+            {
+                return new GetCustomerByIdResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             var mappedCustomer = _mapper.Map<Customer>(customer);
             var response = new GetCustomerByIdResponse()
             {
                 Data = mappedCustomer
             };
 
-            return response;        }
+            return response;
+        }
     }
 }
