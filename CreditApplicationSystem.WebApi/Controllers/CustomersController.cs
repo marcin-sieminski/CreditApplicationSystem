@@ -15,6 +15,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
         public CustomersController(IMediator mediator, ILogger<CustomersController> logger) : base(mediator)
         {
             _logger = logger;
+            _logger.LogInformation("Customers controller logging.");
         }
 
         [HttpGet]
