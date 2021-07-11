@@ -18,9 +18,15 @@ namespace CreditApplicationSystem.ApplicationServices.Components.NbpCurrencyExch
 
         public async Task<CurrencyExchangeRatesTable> Fetch(string currencyCode, DateTime date, string table = "A")
         {
-            var effectiveDate = (date < _currencyDataBeginning ? DateTime.UtcNow : date).ToShortDateString();
-            var request = new RestRequest($"{table}/{currencyCode}/{effectiveDate}/", Method.GET);
-            request.AddHeader("Accept", "application/json");
+            var effectiveDate = (date < _currencyDataBeginning ? DateTime.UtcNow : date);
+            var year = effectiveDate.Year.ToString();
+            var month = effectiveDate.Month < 10 ? $"0{effectiveDate.Month}" : effectiveDate.Month.ToString();
+            var day = effectiveDate.Day < 10 ? $"0{effectiveDate.Day}" : effectiveDate.Day.ToString();
+            var requestDateParameter = $"{year}-{month}-{day}";
+            
+            var request = new RestRequest($"{table}/{currencyCode}/{requestDateParameter}/", Method.GET);
+
+            request.AddParameter("format", "json");
             var result = await _restClient.ExecuteAsync(request);
             var currencyExchangeRateTable = JsonConvert.DeserializeObject<CurrencyExchangeRatesTable>(result.Content);
             return currencyExchangeRateTable;
