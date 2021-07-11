@@ -1,5 +1,6 @@
 using CreditApplicationSystem.ApplicationServices.API.Domain;
 using CreditApplicationSystem.ApplicationServices.API.Validators;
+using CreditApplicationSystem.ApplicationServices.Components.NbpCurrencyExchangeRates;
 using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.CQRS;
@@ -37,6 +38,7 @@ namespace CreditApplicationSystem.WebApi
             services.AddTransient<ICommandExecutor, CommandExecutor>();
             services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddCustomerRequestValidator>());
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+            services.AddTransient<ICurrencyExchangeRatesConnector, CurrencyExchangeRatesConnector>();
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
