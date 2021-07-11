@@ -9,6 +9,7 @@ namespace CreditApplicationSystem.ApplicationServices.API.Domain.CreditApplicati
         public DateTime DateOfSubmission { get; set; }
         public int CustomerId { get; set; }
         public int ProductTypeId { get; set; }
+        public string Currency { get; set; }
         public decimal AmountRequested { get; set; }
         public decimal AmountGranted { get; set; }
         public int ApplicationStatusId { get; set; }

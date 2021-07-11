@@ -10,6 +10,7 @@ namespace CreditApplicationSystem.ApplicationServices.API.Domain.Models
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
         public string ProductTypeName { get; set; }
+        public string Currency { get; set; }
         public decimal AmountRequested { get; set; }
         public decimal AmountGranted { get; set; }
         public string ApplicationStatus { get; set; }

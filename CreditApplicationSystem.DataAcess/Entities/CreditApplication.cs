@@ -13,6 +13,7 @@ namespace CreditApplicationSystem.DataAccess.Entities
         public Customer Customer { get; set; }
         public int ProductTypeId { get; set; }
         public ProductType ProductType { get; set; }
+        public string Currency { get; set; }
         [Required]
         public decimal AmountRequested { get; set; }
         public decimal AmountGranted { get; set; }

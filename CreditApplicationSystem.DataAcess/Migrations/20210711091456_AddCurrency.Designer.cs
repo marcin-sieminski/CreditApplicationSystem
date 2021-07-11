@@ -4,14 +4,16 @@ using CreditApplicationSystem.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CreditApplicationSystem.DataAccess.Migrations
 {
     [DbContext(typeof(CreditApplicationWorkflowDbContext))]
-    partial class CreditApplicationWorkflowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210711091456_AddCurrency")]
+    partial class AddCurrency
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
