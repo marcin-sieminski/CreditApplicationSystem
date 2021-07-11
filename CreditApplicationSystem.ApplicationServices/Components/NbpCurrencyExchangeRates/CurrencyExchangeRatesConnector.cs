@@ -26,7 +26,7 @@ namespace CreditApplicationSystem.ApplicationServices.Components.NbpCurrencyExch
             
             var request = new RestRequest($"{table}/{currencyCode}/{requestDateParameter}/", Method.GET);
 
-            request.AddParameter("format", "json");
+            request.AddHeader("Accept", "application/json");
             var result = await _restClient.ExecuteAsync(request);
             var currencyExchangeRateTable = JsonConvert.DeserializeObject<CurrencyExchangeRatesTable>(result.Content);
             return currencyExchangeRateTable;
