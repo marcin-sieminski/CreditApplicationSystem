@@ -5,8 +5,10 @@ using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.Repositories;
+using CreditApplicationSystem.WebApi.Authentication;
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -42,14 +44,15 @@ namespace CreditApplicationSystem.WebApi
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
-            
+
             services.AddDefaultIdentity<IdentityUser>(cfg => cfg.User.RequireUniqueEmail = true)
                 .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
-            
-            services.AddAuthentication()
-                    .AddCookie()
-                    .AddJwtBearer();
-                
+
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
+                .AddCookie()
+                .AddJwtBearer();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddControllers()
