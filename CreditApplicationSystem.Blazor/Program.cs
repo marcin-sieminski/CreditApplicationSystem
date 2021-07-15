@@ -21,9 +21,17 @@ namespace CreditApplicationSystem.Blazor
                 .AddScoped<IHttpService, HttpService>()
                 .AddScoped<ILocalStorageService, LocalStorageService>();
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped(x => {
+                var apiUrl = new Uri(builder.Configuration["apiUrl"]);
+                return new HttpClient() { BaseAddress = apiUrl };
+            });
 
-            await builder.Build().RunAsync();
+            var host = builder.Build();
+
+            var authenticationService = host.Services.GetRequiredService<IAuthenticationService>();
+            await authenticationService.Initialize();
+
+            await host.RunAsync();
         }
     }
 }
