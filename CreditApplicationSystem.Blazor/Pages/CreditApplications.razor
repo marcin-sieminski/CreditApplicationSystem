@@ -1,4 +1,7 @@
 ﻿@page "/creditapplications"
+@using CreditApplicationSystem.Blazor.Services
+@attribute [Authorize]
+@inject ICreditApplicationsService CreditApplicationService
 <h3>CreditApplications</h3>
 
 @code {

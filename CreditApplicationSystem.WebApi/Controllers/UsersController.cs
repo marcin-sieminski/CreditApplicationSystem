@@ -22,13 +22,20 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("")]
-        [AllowAnonymous]
         public Task<IActionResult> Add([FromQuery] AddUserRequest request)
         {
             return HandleRequest<AddUserRequest, AddUserResponse>(request);
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("authenticate")]
+        public Task<IActionResult> Post([FromBody] ValidateUserRequest request)
+        {
+            return HandleRequest<ValidateUserRequest, ValidateUserResponse>(request);
+        }
     }
 }
