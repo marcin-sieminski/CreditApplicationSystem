@@ -34,6 +34,18 @@ namespace CreditApplicationSystem.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddMediatR(typeof(ResponseBase<>));
             services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
             services.AddTransient<IQueryExecutor, QueryExecutor>();
@@ -83,6 +95,8 @@ namespace CreditApplicationSystem.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
