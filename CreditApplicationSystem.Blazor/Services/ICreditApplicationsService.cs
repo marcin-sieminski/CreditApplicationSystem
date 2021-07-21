@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.Blazor.Services
 {
-    public interface ICreditApplicationsService
+    public interface ICreditApplicationService
     {
         Task<IEnumerable<CreditApplication>> GetAll();
         Task<CreditApplication> GetById(int id);

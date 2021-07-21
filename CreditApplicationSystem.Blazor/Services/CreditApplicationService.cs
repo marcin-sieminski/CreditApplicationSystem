@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.Blazor.Services
 {
-    public class CreditApplicationsService : ICreditApplicationsService
+    public class CreditApplicationService : ICreditApplicationService
     {
         private readonly IHttpService _httpService;
 
-        public CreditApplicationsService(IHttpService httpService)
+        public CreditApplicationService(IHttpService httpService)
         {
             _httpService = httpService;
         }

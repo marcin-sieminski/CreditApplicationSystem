@@ -17,7 +17,8 @@ namespace CreditApplicationSystem.Blazor
             builder.Services
                 .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<ICreditApplicationsService, CreditApplicationsService>()
+                .AddScoped<ICreditApplicationService, CreditApplicationService>()
+                .AddScoped<ICustomerService, CustomerService>()
                 .AddScoped<IHttpService, HttpService>()
                 .AddScoped<ILocalStorageService, LocalStorageService>();
 

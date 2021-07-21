@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31229.75
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31512.422
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationWorkflow.Mvc", "CreditApplicationWorkflow.Mvc\CreditApplicationWorkflow.Mvc.csproj", "{CD303473-A96E-4955-B8F0-BF431FB35D38}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.App
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.Tests", "CreditApplicationSystem.Tests\CreditApplicationSystem.Tests.csproj", "{43AF03E3-3F5F-4E22-B9BD-59F9AE092016}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditApplicationSystem.Blazor", "CreditApplicationSystem.Blazor\CreditApplicationSystem.Blazor.csproj", "{D67D6AC4-574D-406F-BDB0-F3812E46E0AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.Blazor", "CreditApplicationSystem.Blazor\CreditApplicationSystem.Blazor.csproj", "{D67D6AC4-574D-406F-BDB0-F3812E46E0AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
