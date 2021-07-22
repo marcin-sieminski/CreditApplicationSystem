@@ -1,7 +1,24 @@
 ﻿@page
 @model CreditApplicationWorkflow.Mvc.Pages.Customers.IndexModel
 @{
-	ViewData["Title"] = "Customers";
-	Layout = "_Layout";
+    ViewData["Title"] = "Customers";
+    Layout = "_Layout";
 }
 <h3>Customers</h3>
+<hr />
+<table class="table table-sm table-bordered table-hover table-striped">
+    <tr class="thead-light">
+        <th>Id</th>
+        <th>First name</th>
+        <th>Last name</th>
+    </tr>
+
+    @foreach (var customer in Model.Customers)
+    {
+        <tr>
+            <td>@customer.Id</td>
+            <td>@customer.CustomerFirstName</td>
+            <td>@customer.CustomerLastName</td>
+        </tr>
+    }
+</table>

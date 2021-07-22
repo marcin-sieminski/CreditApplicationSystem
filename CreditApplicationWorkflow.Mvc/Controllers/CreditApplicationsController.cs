@@ -41,7 +41,7 @@ namespace CreditApplicationWorkflow.Mvc.Controllers
             try
             {
                 var response = await _mediator.Send(request);
-                return View(new CreditApplicationListViewModel{CreditApplications = response.Data});
+                return View(new CreditApplicationListViewModel { CreditApplications = response.Data });
             }
             catch (Exception e)
             {
