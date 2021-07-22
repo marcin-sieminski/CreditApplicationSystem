@@ -9,6 +9,7 @@ namespace CreditApplicationSystem.Tests
     public class CustomerTests
     {
         [TestMethod]
+        [Priority(2)]
         public void CanInsertCustomerIntoDatabase()
         {
             var builder = new DbContextOptionsBuilder();

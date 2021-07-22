@@ -8,6 +8,7 @@ namespace CreditApplicationSystem.Tests
     public class CurrencyExchangeRatesConnectorTests
     {
         [TestMethod]
+        [Priority(1)]
         public void CurrencyExchangeRatesConnector_Returns_Valid_Exchange_Rates()
         {
             var connector = new CurrencyExchangeRatesConnector();
