@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CreditApplicationSystem.ApplicationServices.API.Domain.Models
 {

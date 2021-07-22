@@ -50,11 +50,13 @@ namespace CreditApplicationWorkflow.Mvc.Controllers
             }
         }
 
-        public async Task<IActionResult> Details()
+        [Route("{id:int}")]
+        public async Task<IActionResult> Details([FromRoute] int id)
         {
             try
             {
-                return View();
+                var response = await _mediator.Send(new GetCreditApplicationByIdRequest { Id = id });
+                return View(response.Data);
             }
             catch (Exception e)
             {
