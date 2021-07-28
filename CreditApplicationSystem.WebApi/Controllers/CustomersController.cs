@@ -39,7 +39,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpPost]
         [Route("")]
-        [ProducesResponseType(typeof(string), 201)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
         {
