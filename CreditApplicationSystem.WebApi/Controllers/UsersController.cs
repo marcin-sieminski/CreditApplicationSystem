@@ -1,6 +1,7 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -17,6 +18,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public Task<IActionResult> GetAll([FromQuery] GetUsersRequest request)
         {
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
@@ -25,6 +28,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Task<IActionResult> Add([FromQuery] AddUserRequest request)
         {
             return HandleRequest<AddUserRequest, AddUserResponse>(request);
@@ -33,6 +38,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("authenticate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Task<IActionResult> Post([FromBody] ValidateUserRequest request)
         {
             return HandleRequest<ValidateUserRequest, ValidateUserResponse>(request);
