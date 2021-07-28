@@ -1,5 +1,6 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain.Customer;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public Task<IActionResult> GetCustomers([FromQuery] GetCustomersRequest request)
         {
             return HandleRequest<GetCustomersRequest, GetCustomersResponse>(request);
@@ -27,6 +30,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public Task<IActionResult> GetCustomerById([FromRoute] int id)
         {
             return HandleRequest<GetCustomerByIdRequest, GetCustomerByIdResponse>(new GetCustomerByIdRequest { Id = id });
@@ -34,6 +39,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpPost]
         [Route("")]
+        [ProducesResponseType(typeof(string), 201)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
         {
             return HandleRequest<AddCustomerRequest, AddCustomerResponse>(request);
@@ -41,6 +48,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpPut]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Task<IActionResult> EditCustomer([FromBody] EditCustomerRequest request)
         {
             return HandleRequest<EditCustomerRequest, EditCustomerResponse>(request);
@@ -48,6 +57,8 @@ namespace CreditApplicationSystem.WebApi.Controllers
 
         [HttpDelete]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public Task<IActionResult> DeleteCustomer([FromBody] DeleteCustomerRequest request)
         {
             return HandleRequest<DeleteCustomerRequest, DeleteCustomerResponse>(request);
