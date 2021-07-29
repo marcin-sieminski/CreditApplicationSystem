@@ -16,6 +16,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
         {
         }
 
+        /// <summary>
+        /// Get data of all users.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -25,6 +30,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
 
+        /// <summary>
+        /// Create new user.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         [Route("")]
@@ -35,6 +45,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<AddUserRequest, AddUserResponse>(request);
         }
 
+        /// <summary>
+        /// Authenticate user.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         [Route("authenticate")]

@@ -19,6 +19,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             _logger.LogInformation("CreditApplication controller logging.");
         }
 
+        /// <summary>
+        /// Get list of all credit applications.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -28,6 +33,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<GetCreditApplicationsRequest, GetCreditApplicationsResponse>(request);
         }
 
+        /// <summary>
+        /// Get specific credit application by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -38,6 +48,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
                 new GetCreditApplicationByIdRequest { Id = id });
         }
 
+        /// <summary>
+        /// Create new credit application.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -47,6 +62,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<AddCreditApplicationRequest, AddCreditApplicationResponse>(request);
         }
 
+        /// <summary>
+        /// Edit data of existing credit application.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -56,6 +76,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<EditCreditApplicationRequest, EditCreditApplicationResponse>(request);
         }
 
+        /// <summary>
+        /// Delete credit application.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]

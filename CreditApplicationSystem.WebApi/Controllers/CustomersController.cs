@@ -19,6 +19,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             _logger.LogInformation("Customers controller logging.");
         }
 
+        /// <summary>
+        /// Get all customers.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -28,6 +33,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<GetCustomersRequest, GetCustomersResponse>(request);
         }
 
+        /// <summary>
+        /// Get scecific customer by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -37,6 +47,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<GetCustomerByIdRequest, GetCustomerByIdResponse>(new GetCustomerByIdRequest { Id = id });
         }
 
+        /// <summary>
+        /// Create new customer.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -46,6 +61,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<AddCustomerRequest, AddCustomerResponse>(request);
         }
 
+        /// <summary>
+        /// Edit data of an existing customer.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -55,6 +75,11 @@ namespace CreditApplicationSystem.WebApi.Controllers
             return HandleRequest<EditCustomerRequest, EditCustomerResponse>(request);
         }
 
+        /// <summary>
+        /// Delete customer.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]

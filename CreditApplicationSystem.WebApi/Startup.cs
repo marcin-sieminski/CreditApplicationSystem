@@ -20,6 +20,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using System;
+using System.IO;
 
 namespace CreditApplicationSystem.WebApi
 {
@@ -79,7 +81,9 @@ namespace CreditApplicationSystem.WebApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CreditApplicationSystem.WebApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Credit Application System", Version = "v1", Description = "Workflow system for financial institutions." });
+                var filePath = Path.Combine(AppContext.BaseDirectory, "CreditApplicationSystem.WebApi.xml");
+                c.IncludeXmlComments(filePath);
             });
         }
 
