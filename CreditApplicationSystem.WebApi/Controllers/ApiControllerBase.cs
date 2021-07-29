@@ -1,6 +1,7 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain;
 using CreditApplicationSystem.ApplicationServices.API.ErrorHandling;
 using MediatR;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
+    [EnableCors]
     public abstract class ApiControllerBase : ControllerBase
     {
         protected readonly IMediator _mediator;
