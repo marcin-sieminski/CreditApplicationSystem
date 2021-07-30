@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.DataAccess
 {
@@ -89,6 +91,34 @@ namespace CreditApplicationSystem.DataAccess
                 Notes = string.Empty,
                 IsActive = true
             });
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            foreach (var entry in ChangeTracker.Entries<EntityBase>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedBy = string.Empty;
+                        entry.Entity.Created = DateTime.UtcNow;
+                        entry.Entity.StatusId = 1;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.ModifiedBy = string.Empty;
+                        entry.Entity.Modified = DateTime.UtcNow;
+                        break;
+                    case EntityState.Deleted:
+                        entry.Entity.ModifiedBy = string.Empty;
+                        entry.Entity.Modified = DateTime.UtcNow;
+                        entry.Entity.Inactivated = DateTime.UtcNow;
+                        entry.Entity.InactivatedBy = string.Empty;
+                        entry.Entity.StatusId = 0;
+                        entry.State = EntityState.Modified;
+                        break;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }
