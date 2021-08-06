@@ -10,6 +10,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Routing;
@@ -19,6 +20,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Serilog;
+using Serilog.Context;
+using System.Linq;
+using System.Net;
 
 namespace CreditApplicationWorkflow.Mvc
 {
@@ -67,7 +71,7 @@ namespace CreditApplicationWorkflow.Mvc
             });
 
             services.AddHealthChecks();
-            
+
             services.AddScoped<IScopeInformation, ScopeInformation>();
         }
 
@@ -83,6 +87,31 @@ namespace CreditApplicationWorkflow.Mvc
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+            app.Use(async (ctx, next) =>
+            {
+                IPAddress tempRemoteIpAddress = ctx.Connection.RemoteIpAddress;
+                var remoteIpAddress = "";
+                if (tempRemoteIpAddress != null)
+                {
+                    if (tempRemoteIpAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
+                    {
+                        tempRemoteIpAddress = (await Dns.GetHostEntryAsync(tempRemoteIpAddress)).AddressList
+                            .First(x => x.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+                    }
+
+                    remoteIpAddress = tempRemoteIpAddress.ToString();
+                }
+                using (LogContext.PushProperty("IPAddress", remoteIpAddress))
+                {
+                    await next();
+                }
+            });
 
             app.UseSerilogRequestLogging();
 
