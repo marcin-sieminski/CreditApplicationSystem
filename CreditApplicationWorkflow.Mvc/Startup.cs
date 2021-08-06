@@ -1,4 +1,5 @@
 using CreditApplicationSystem.ApplicationServices.API.Domain;
+using CreditApplicationSystem.ApplicationServices.Components.ScopeInformation;
 using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.CQRS;
@@ -65,6 +66,8 @@ namespace CreditApplicationWorkflow.Mvc
             });
 
             services.AddHealthChecks();
+            
+            services.AddScoped<IScopeInformation, ScopeInformation>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
