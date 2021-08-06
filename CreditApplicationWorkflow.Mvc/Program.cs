@@ -14,6 +14,8 @@ namespace CreditApplicationWorkflow.Mvc
         {
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(Configuration)
+                .Enrich.FromLogContext()
+                .Enrich.WithUserName()
                 .WriteTo.File(new JsonFormatter(), @"c:\temp\logs\ca-log.json", shared: true)
                 .CreateLogger();
 
