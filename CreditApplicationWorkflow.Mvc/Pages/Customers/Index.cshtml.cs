@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,9 +14,11 @@ namespace CreditApplicationWorkflow.Mvc.Pages.Customers
     public class IndexModel : PageModel
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(IMediator mediator)
+        public IndexModel(IMediator mediator, ILogger<IndexModel> logger)
         {
+            _logger = logger;
             _mediator = mediator;
         }
 
@@ -25,6 +28,8 @@ namespace CreditApplicationWorkflow.Mvc.Pages.Customers
         {
             var response = await _mediator.Send(request);
             Customers = response.Data;
+
+            _logger.LogInformation($"Requested customers.");
         }
     }
 }

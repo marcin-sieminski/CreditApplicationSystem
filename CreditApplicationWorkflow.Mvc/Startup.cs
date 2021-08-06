@@ -4,8 +4,10 @@ using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.Repositories;
 using CreditApplicationWorkflow.Mvc.Helpers;
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -36,10 +38,10 @@ namespace CreditApplicationWorkflow.Mvc
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
-            
+
             services.AddDefaultIdentity<IdentityUser>(cfg => cfg.User.RequireUniqueEmail = true)
                     .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
-            
+
             services.AddAuthentication()
                     .AddCookie()
                     .AddJwtBearer();
@@ -54,12 +56,15 @@ namespace CreditApplicationWorkflow.Mvc
                 {
                     opts.Conventions.Add(new PageRouteTransformerConvention(new KebabCaseParameterTransformer()));
                 });
+
             services.Configure<RouteOptions>(options =>
             {
                 options.AppendTrailingSlash = true;
                 options.LowercaseUrls = true;
                 options.LowercaseQueryStrings = true;
             });
+
+            services.AddHealthChecks();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -88,6 +93,13 @@ namespace CreditApplicationWorkflow.Mvc
                     name: "default",
                     pattern: "{controller=creditapplications}/{action=index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+
+
             });
         }
     }
