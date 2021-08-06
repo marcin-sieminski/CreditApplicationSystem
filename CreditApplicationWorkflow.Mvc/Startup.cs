@@ -98,8 +98,6 @@ namespace CreditApplicationWorkflow.Mvc
                     Predicate = _ => true,
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
                 });
-
-
             });
         }
     }

@@ -7,9 +7,11 @@ using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.Repositories;
 using CreditApplicationSystem.WebApi.Authentication;
 using FluentValidation.AspNetCore;
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -85,6 +87,8 @@ namespace CreditApplicationSystem.WebApi
                 var filePath = Path.Combine(AppContext.BaseDirectory, "CreditApplicationSystem.WebApi.xml");
                 c.IncludeXmlComments(filePath);
             });
+
+            services.AddHealthChecks();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -108,6 +112,11 @@ namespace CreditApplicationSystem.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("api/health", new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
             });
         }
     }
