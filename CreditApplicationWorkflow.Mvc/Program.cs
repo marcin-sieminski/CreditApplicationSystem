@@ -1,3 +1,4 @@
+using CreditApplicationSystem.ApplicationServices.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -16,7 +17,6 @@ namespace CreditApplicationWorkflow.Mvc
                 .ReadFrom.Configuration(Configuration)
                 .Enrich.FromLogContext()
                 .Enrich.WithUserName()
-                .WriteTo.File(new JsonFormatter(), @"c:\temp\logs\ca-log.json", shared: true)
                 .CreateLogger();
 
             try
