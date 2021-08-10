@@ -25,6 +25,7 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
             var creditApplication = _mapper.Map<CreditApplication>(request);
             var command = new AddCreditApplicationCommand() { Parameter = creditApplication };
             var creditApplicationFromDb = await _commandExecutor.Execute(command);
+
             return new AddCreditApplicationResponse()
             {
                 Data = _mapper.Map<CreditApplicationSystem.ApplicationServices.API.Domain.Models.CreditApplication>(creditApplicationFromDb)
