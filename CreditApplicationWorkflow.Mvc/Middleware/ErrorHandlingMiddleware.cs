@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace CreditApplicationSystem.WebApi.Middleware
+namespace CreditApplicationWorkflow.Mvc.Middleware
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {

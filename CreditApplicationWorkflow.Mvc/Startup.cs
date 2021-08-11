@@ -5,6 +5,7 @@ using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.Repositories;
 using CreditApplicationWorkflow.Mvc.Helpers;
+using CreditApplicationWorkflow.Mvc.Middleware;
 using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -71,8 +72,8 @@ namespace CreditApplicationWorkflow.Mvc
             });
 
             services.AddHealthChecks();
-
             services.AddScoped<IScopeInformation, ScopeInformation>();
+            services.AddScoped<ErrorHandlingMiddleware>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -87,6 +88,8 @@ namespace CreditApplicationWorkflow.Mvc
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
