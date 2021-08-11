@@ -4,25 +4,43 @@
     Layout = "_Layout";
 }
 <h3>Credit applications</h3>
-<hr/>
-<table class="table table-sm table-bordered table-hover table-striped">
-    <tr class="thead-light">
-        <th>Id</th><th>Customer</th><th>Product type</th><th>Amount requested</th><th>Amount granted</th><th>Employee</th><th>Date of submission</th><th>Status</th><th>Date of status change</th><th>Notes</th>
-    </tr>
+<hr />
 
-    @foreach (var creditApplication in Model.CreditApplications)
-    {
-        <tr>
-            <td><a asp-controller="CreditApplications" asp-action="Details" asp-route-id="@creditApplication.Id">@creditApplication.Id</a></td>
-            <td>@creditApplication.CustomerFirstName @creditApplication.CustomerLastName</td>
-            <td>@creditApplication.ProductTypeName</td>
-            <td>@creditApplication.AmountRequested</td>
-            <td>@creditApplication.AmountGranted</td>
-            <td>@creditApplication.EmployeeFirstName @creditApplication.EmployeeLastName</td>
-            <td>@creditApplication.DateOfSubmission</td>
-            <td>@creditApplication.ApplicationStatus</td>
-            <td>@creditApplication.DateOfLastStatusChange</td>
-            <td>@creditApplication.Notes</td>
-        </tr>
-    }
-</table>
+<div class="container-fluid">
+
+    <div class="row">
+
+        <table class="table table-sm table-bordered table-hover table-striped">
+            <tr class="thead-light">
+                <th>Id</th>
+                <th>Customer</th>
+                <th>Product type</th>
+                <th>Amount requested</th>
+                <th>Amount granted</th>
+                <th>Employee</th>
+                <th>Date of submission</th>
+                <th>Status</th>
+                <th>Date of status change</th>
+                <th>Notes</th>
+            </tr>
+
+            @foreach (var creditApplication in Model.CreditApplications)
+            {
+
+                <tr>
+                    <td><a asp-controller="CreditApplications" asp-action="Details" asp-route-id="@creditApplication.Id">@creditApplication.Id</a></td>
+                    <td>@creditApplication.CustomerFirstName @creditApplication.CustomerLastName</td>
+                    <td>@creditApplication.ProductTypeName</td>
+                    <td>@creditApplication.AmountRequested</td>
+                    <td>@creditApplication.AmountGranted</td>
+                    <td>@creditApplication.EmployeeFirstName @creditApplication.EmployeeLastName</td>
+                    <td>@creditApplication.DateOfSubmission</td>
+                    <td>@creditApplication.ApplicationStatus</td>
+                    <td>@creditApplication.DateOfLastStatusChange</td>
+                    <td>@creditApplication.Notes</td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>
