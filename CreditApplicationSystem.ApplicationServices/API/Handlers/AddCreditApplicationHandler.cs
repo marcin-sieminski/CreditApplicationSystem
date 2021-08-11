@@ -28,7 +28,7 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 
             return new AddCreditApplicationResponse()
             {
-                Data = _mapper.Map<CreditApplicationSystem.ApplicationServices.API.Domain.Models.CreditApplication>(creditApplicationFromDb)
+                Data = _mapper.Map<Domain.Models.CreditApplication>(creditApplicationFromDb)
             };
         }
     }
