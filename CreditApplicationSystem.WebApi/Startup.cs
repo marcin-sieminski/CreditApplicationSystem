@@ -6,6 +6,7 @@ using CreditApplicationSystem.DataAccess;
 using CreditApplicationSystem.DataAccess.CQRS;
 using CreditApplicationSystem.DataAccess.Repositories;
 using CreditApplicationSystem.WebApi.Authentication;
+using CreditApplicationSystem.WebApi.Middleware;
 using FluentValidation.AspNetCore;
 using HealthChecks.UI.Client;
 using MediatR;
@@ -89,6 +90,7 @@ namespace CreditApplicationSystem.WebApi
             });
 
             services.AddHealthChecks();
+            services.AddScoped<ErrorHandlingMiddleware>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -99,6 +101,8 @@ namespace CreditApplicationSystem.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CreditApplicationSystem.WebApi v1"));
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 
