@@ -29,9 +29,10 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 
             var command = new AddUserCommand() { Parameter = user };
             var userFromDb = await _commandExecutor.Execute(command);
+
             return new AddUserResponse()
             {
-                Data = _mapper.Map<Domain.Models.User>(userFromDb)
+                Data = _mapper.Map<API.Domain.Models.User>(userFromDb)
             };
         }
     }
