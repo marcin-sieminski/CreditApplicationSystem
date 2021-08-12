@@ -1,9 +1,9 @@
-﻿namespace CreditApplicationSystem.WebApi.Authentication
+﻿namespace CreditApplicationSystem.ApplicationServices.API.Domain.Users
 {
     public class AuthenticationSettings
     {
         public string JwtKey { get; set; }
-        public string JwtExpireDays { get; set; }
+        public int JwtExpireDays { get; set; }
         public string JwtIssuer { get; set; }
     }
 }

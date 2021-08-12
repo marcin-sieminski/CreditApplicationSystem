@@ -1,4 +1,5 @@
 using CreditApplicationSystem.ApplicationServices.API.Domain;
+using CreditApplicationSystem.ApplicationServices.API.Domain.Users;
 using CreditApplicationSystem.ApplicationServices.API.Validators;
 using CreditApplicationSystem.ApplicationServices.Components.NbpCurrencyExchangeRates;
 using CreditApplicationSystem.ApplicationServices.Mappings;
@@ -21,12 +22,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
 
 namespace CreditApplicationSystem.WebApi
 {
@@ -69,7 +70,7 @@ namespace CreditApplicationSystem.WebApi
 
             var authenticationSettings = new AuthenticationSettings();
             Configuration.GetSection("Authentication").Bind(authenticationSettings);
-
+            services.AddSingleton(authenticationSettings);
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = "Bearer";
@@ -87,7 +88,8 @@ namespace CreditApplicationSystem.WebApi
                 };
             });
 
-            services.AddAuthentication("BasicAuthentication")                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
+            services.AddAuthentication("BasicAuthentication")                
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
                 .AddCookie();
                 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

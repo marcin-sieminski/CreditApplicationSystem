@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace CreditApplicationSystem.ApplicationServices.API.Validators
 {
-    public class AuthenticateUserValidator : AbstractValidator<ValidateUserRequest>
+    public class AuthenticateUserValidator : AbstractValidator<AuthenticateUserRequest>
     {
         public AuthenticateUserValidator()
         {

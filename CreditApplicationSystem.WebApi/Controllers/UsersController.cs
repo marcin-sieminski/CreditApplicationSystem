@@ -55,9 +55,9 @@ namespace CreditApplicationSystem.WebApi.Controllers
         [Route("authenticate")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Task<IActionResult> Post([FromBody] ValidateUserRequest request)
+        public Task<IActionResult> Post([FromBody] AuthenticateUserRequest request)
         {
-            return HandleRequest<ValidateUserRequest, ValidateUserResponse>(request);
+            return HandleRequest<AuthenticateUserRequest, AuthenticateUserResponse>(request);
         }
     }
 }
