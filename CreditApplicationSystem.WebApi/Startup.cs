@@ -25,6 +25,8 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CreditApplicationSystem.WebApi
 {
@@ -65,11 +67,29 @@ namespace CreditApplicationSystem.WebApi
             services.AddDefaultIdentity<IdentityUser>(cfg => cfg.User.RequireUniqueEmail = true)
                 .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
 
-            services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
-                .AddCookie()
-                .AddJwtBearer();
+            var authenticationSettings = new AuthenticationSettings();
+            Configuration.GetSection("Authentication").Bind(authenticationSettings);
 
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = "Bearer";
+                option.DefaultScheme = "Bearer";
+                option.DefaultChallengeScheme = "Bearer";
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidIssuer = authenticationSettings.JwtIssuer,
+                    ValidAudience = authenticationSettings.JwtIssuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
+                };
+            });
+
+            services.AddAuthentication("BasicAuthentication")                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
+                .AddCookie();
+                
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddControllers()
