@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class UsersController : ApiControllerBase
     {
         public UsersController(IMediator mediator) : base(mediator)
@@ -52,12 +52,12 @@ namespace CreditApplicationSystem.WebApi.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        [Route("authenticate")]
+        [Route("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Task<IActionResult> Post([FromBody] AuthenticateUserRequest request)
+        public Task<IActionResult> LoginUser([FromBody] LoginUserRequest request)
         {
-            return HandleRequest<AuthenticateUserRequest, AuthenticateUserResponse>(request);
+            return HandleRequest<LoginUserRequest, LoginUserResponse>(request);
         }
     }
 }

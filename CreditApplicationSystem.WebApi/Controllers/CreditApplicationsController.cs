@@ -1,5 +1,6 @@
 ﻿using CreditApplicationSystem.ApplicationServices.API.Domain.CreditApplication;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
 {
     [ApiController]
     [Route("api/credit-applications")]
+    [Authorize]
     public class CreditApplicationsController : ApiControllerBase
     {
         private readonly ILogger<CreditApplicationsController> _logger;

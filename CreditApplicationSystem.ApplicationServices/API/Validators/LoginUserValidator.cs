@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace CreditApplicationSystem.ApplicationServices.API.Validators
 {
-    public class AuthenticateUserValidator : AbstractValidator<AuthenticateUserRequest>
+    public class LoginUserValidator : AbstractValidator<LoginUserRequest>
     {
-        public AuthenticateUserValidator()
+        public LoginUserValidator()
         {
             RuleFor(x => x.Username).NotEmpty();
             
