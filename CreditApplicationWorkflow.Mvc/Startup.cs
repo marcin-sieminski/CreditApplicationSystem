@@ -47,6 +47,7 @@ namespace CreditApplicationWorkflow.Mvc
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(cfg => cfg.User.RequireUniqueEmail = true)
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
 
             services.AddAuthentication()
@@ -56,7 +57,7 @@ namespace CreditApplicationWorkflow.Mvc
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddControllersWithViews()
-                .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+                    .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             services.AddRazorPages()
                 .AddRazorPagesOptions(opts =>
