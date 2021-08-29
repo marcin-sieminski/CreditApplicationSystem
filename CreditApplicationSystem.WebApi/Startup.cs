@@ -66,6 +66,7 @@ namespace CreditApplicationSystem.WebApi
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(cfg => cfg.User.RequireUniqueEmail = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
 
             var authenticationSettings = new AuthenticationSettings();
