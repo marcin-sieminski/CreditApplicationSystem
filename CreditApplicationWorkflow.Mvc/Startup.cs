@@ -1,4 +1,5 @@
 using CreditApplicationSystem.ApplicationServices.API.Domain;
+using CreditApplicationSystem.ApplicationServices.API.Domain.Users;
 using CreditApplicationSystem.ApplicationServices.Components.ScopeInformation;
 using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
@@ -49,6 +50,10 @@ namespace CreditApplicationWorkflow.Mvc
             services.AddDefaultIdentity<IdentityUser>(cfg => cfg.User.RequireUniqueEmail = true)
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<CreditApplicationWorkflowDbContext>();
+
+            var authenticationSettings = new AuthenticationSettings();
+            Configuration.GetSection("Authentication").Bind(authenticationSettings);
+            services.AddSingleton(authenticationSettings);
 
             services.AddAuthentication()
                     .AddCookie()
