@@ -18,15 +18,13 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AuthenticationSettings _authenticationSettings;
 
 
-        public LoginUserHandler(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, AuthenticationSettings authenticationSettings)
+        public LoginUserHandler(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, AuthenticationSettings authenticationSettings)
         {
             _signInManager = signInManager;
             _userManager = userManager;
-            _roleManager = roleManager; 
             _authenticationSettings = authenticationSettings;
         }
 
