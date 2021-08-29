@@ -58,8 +58,8 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
                 var expires = DateTime.UtcNow.AddDays(_authenticationSettings.JwtExpireDays);
 
                 var token = new JwtSecurityToken(
-                    _authenticationSettings.JwtIssuer,
-                    _authenticationSettings.JwtIssuer,
+                    issuer: _authenticationSettings.JwtIssuer,
+                    audience: _authenticationSettings.JwtIssuer,
                     claims,
                     expires: expires,
                     signingCredentials: credentials);
