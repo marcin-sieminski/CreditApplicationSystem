@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 {
@@ -20,13 +21,15 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AuthenticationSettings _authenticationSettings;
+        private readonly ILogger<LoginUserHandler> _logger;
 
 
-        public LoginUserHandler(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, AuthenticationSettings authenticationSettings)
+        public LoginUserHandler(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, AuthenticationSettings authenticationSettings, ILogger<LoginUserHandler> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _authenticationSettings = authenticationSettings;
+            _logger = logger;
         }
 
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
@@ -73,10 +76,12 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
 
                 var tokenHandler = new JwtSecurityTokenHandler().WriteToken(token);
                 response.Data = tokenHandler;
+                _logger.LogInformation($"Authorization succeeded. User: {user.UserName}");
             }
             else
             {
                 response.Error = new ErrorModel("Invalid username or password");
+                _logger.LogInformation($"Authorization failed. User: {user.UserName}");
             }
 
             return response;
