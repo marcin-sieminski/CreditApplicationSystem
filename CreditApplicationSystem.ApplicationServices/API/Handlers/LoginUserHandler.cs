@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading;
@@ -31,7 +32,13 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
         {
             var user = await _signInManager.UserManager.Users.FirstOrDefaultAsync(u => u.UserName == request.Username, cancellationToken: cancellationToken);
-            var roles = _userManager.GetRolesAsync(user);
+            
+            string currentRoleName = string.Empty;
+            if (!String.IsNullOrEmpty(request.Role))
+            {
+                var allUserRoles = await _userManager.GetRolesAsync(user);
+                currentRoleName = allUserRoles.FirstOrDefault(x => x.Contains(request.Role)) ?? "";
+            }
             
             var response = new LoginUserResponse();
 
@@ -48,7 +55,7 @@ namespace CreditApplicationSystem.ApplicationServices.API.Handlers
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.Role, $"{roles}")
+                    new Claim(ClaimTypes.Role, currentRoleName)
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

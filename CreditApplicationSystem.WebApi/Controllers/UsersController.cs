@@ -9,7 +9,6 @@ namespace CreditApplicationSystem.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
     public class UsersController : ApiControllerBase
     {
         public UsersController(IMediator mediator) : base(mediator)
@@ -23,6 +22,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public Task<IActionResult> GetAll([FromQuery] GetUsersRequest request)

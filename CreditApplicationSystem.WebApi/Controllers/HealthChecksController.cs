@@ -12,7 +12,7 @@ namespace CreditApplicationSystem.WebApi.Controllers
 {
     [ApiController]
     [Route("hc")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class HealthChecksController : ControllerBase
     {
         private readonly HttpClient _client = new();
