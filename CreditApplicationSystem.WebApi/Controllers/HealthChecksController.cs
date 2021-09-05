@@ -6,11 +6,13 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CreditApplicationSystem.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/hc")]
+    [Route("hc")]
+    [Authorize]
     public class HealthChecksController : ControllerBase
     {
         private readonly HttpClient _client = new();
