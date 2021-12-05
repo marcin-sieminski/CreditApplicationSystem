@@ -9,6 +9,7 @@ using CreditApplicationWorkflow.Mvc.Helpers;
 using CreditApplicationWorkflow.Mvc.Middleware;
 using HealthChecks.UI.Client;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ using Serilog;
 using Serilog.Context;
 using System.Linq;
 using System.Net;
+using CreditApplicationSystem.ApplicationServices.Behaviours;
 
 namespace CreditApplicationWorkflow.Mvc
 {
@@ -43,6 +45,8 @@ namespace CreditApplicationWorkflow.Mvc
             services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
             services.AddTransient<IQueryExecutor, QueryExecutor>();
             services.AddTransient<ICommandExecutor, CommandExecutor>();
+
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));

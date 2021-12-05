@@ -1,6 +1,7 @@
 using CreditApplicationSystem.ApplicationServices.API.Domain;
 using CreditApplicationSystem.ApplicationServices.API.Domain.Users;
 using CreditApplicationSystem.ApplicationServices.API.Validators;
+using CreditApplicationSystem.ApplicationServices.Behaviours;
 using CreditApplicationSystem.ApplicationServices.Components.NbpCurrencyExchangeRates;
 using CreditApplicationSystem.ApplicationServices.Mappings;
 using CreditApplicationSystem.DataAccess;
@@ -11,6 +12,7 @@ using CreditApplicationSystem.WebApi.Middleware;
 using FluentValidation.AspNetCore;
 using HealthChecks.UI.Client;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -61,6 +63,8 @@ namespace CreditApplicationSystem.WebApi
             services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddCustomerRequestValidator>());
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.AddTransient<ICurrencyExchangeRatesConnector, CurrencyExchangeRatesConnector>();
+
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
