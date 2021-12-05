@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CreditApplicationSystem.ApplicationServices.Behaviours;
 
-public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
+public class PerformanceBehaviour<TRequest> : IRequestPreProcessor<TRequest>
 {
     private readonly ILogger<TRequest> _logger;
 
-    public LoggingBehaviour(ILogger<TRequest> logger)
+    public PerformanceBehaviour(ILogger<TRequest> logger)
     {
         _logger = logger;
     }

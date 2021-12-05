@@ -64,7 +64,8 @@ namespace CreditApplicationSystem.WebApi
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.AddTransient<ICurrencyExchangeRatesConnector, CurrencyExchangeRatesConnector>();
 
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(PerformanceBehaviour<>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
 
             services.AddDbContext<CreditApplicationWorkflowDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CreditApplicationSystemConnection")));
