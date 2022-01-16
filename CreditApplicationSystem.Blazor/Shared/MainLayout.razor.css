@@ -21,8 +21,9 @@
     align-items: center;
 }
 
-/* ReSharper disable once CssNotResolved */
+/* ReSharper disable CssNotResolved */
     .top-row ::deep a, .top-row .btn-link {
+/* ReSharper restore CssNotResolved */
         white-space: nowrap;
         margin-left: 1.5rem;
     }
