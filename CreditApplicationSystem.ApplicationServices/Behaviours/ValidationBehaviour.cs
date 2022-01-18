@@ -26,7 +26,7 @@ namespace CreditApplicationSystem.ApplicationServices.Behaviours
                     .Where(f => f != null).ToList();
                 if (failure.Any())
                 {
-                    throw new Exception();
+                    throw new ValidationException(failure);
                 }
             }
 
