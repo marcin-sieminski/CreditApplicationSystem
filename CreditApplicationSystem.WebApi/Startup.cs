@@ -30,6 +30,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Text;
+using Serilog;
 
 namespace CreditApplicationSystem.WebApi
 {
@@ -130,18 +131,13 @@ namespace CreditApplicationSystem.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CreditApplicationSystem.WebApi v1"));
             }
-
             app.UseMiddleware<ErrorHandlingMiddleware>();
-
             app.UseHttpsRedirection();
-
+            app.UseSerilogRequestLogging();
             app.UseRouting();
-
             app.UseCors();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
