@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.Blazor", "CreditApplicationSystem.Blazor\CreditApplicationSystem.Blazor.csproj", "{D67D6AC4-574D-406F-BDB0-F3812E46E0AE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "identityserver", "IdentityServer\identityserver.csproj", "{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D67D6AC4-574D-406F-BDB0-F3812E46E0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D67D6AC4-574D-406F-BDB0-F3812E46E0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D67D6AC4-574D-406F-BDB0-F3812E46E0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
