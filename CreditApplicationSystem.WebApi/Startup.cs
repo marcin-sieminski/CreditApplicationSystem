@@ -30,6 +30,8 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Text;
+using CreditApplicationSystem.DataAccess.Service;
+using Microsoft.AspNetCore.Http;
 using Serilog;
 
 namespace CreditApplicationSystem.WebApi
@@ -55,8 +57,10 @@ namespace CreditApplicationSystem.WebApi
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });
+                options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin());
             });
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(typeof(ICurrentUserService), typeof(CurrentUserService));
             services.AddMediatR(typeof(ResponseBase<>));
             services.AddAutoMapper(typeof(CreditApplicationProfile).Assembly);
             services.AddTransient<IQueryExecutor, QueryExecutor>();
@@ -86,6 +90,7 @@ namespace CreditApplicationSystem.WebApi
                 option.DefaultChallengeScheme = "Bearer";
             }).AddJwtBearer(cfg =>
             {
+                cfg.Authority = "https://localhost:5002";
                 cfg.RequireHttpsMetadata = false;
                 cfg.SaveToken = true;
                 cfg.TokenValidationParameters = new TokenValidationParameters()
@@ -100,6 +105,12 @@ namespace CreditApplicationSystem.WebApi
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
                 .AddCookie();
                 
+            services.AddAuthorization(options => 
+                options.AddPolicy("ApiScope", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "api1");
+                }));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddControllers()
@@ -140,7 +151,7 @@ namespace CreditApplicationSystem.WebApi
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireAuthorization("ApiScope");
                 endpoints.MapHealthChecks("api/health", new HealthCheckOptions
                 {
                     Predicate = _ => true,

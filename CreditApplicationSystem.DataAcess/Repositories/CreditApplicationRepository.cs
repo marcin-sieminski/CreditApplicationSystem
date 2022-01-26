@@ -10,7 +10,7 @@ namespace CreditApplicationSystem.DataAccess.Repositories
     public class CreditApplicationRepository : IRepository<CreditApplication>
     {
         private readonly CreditApplicationWorkflowDbContext _context;
-        private DbSet<CreditApplication> _entities;
+        private readonly DbSet<CreditApplication> _entities;
 
         public CreditApplicationRepository(CreditApplicationWorkflowDbContext context)
         {

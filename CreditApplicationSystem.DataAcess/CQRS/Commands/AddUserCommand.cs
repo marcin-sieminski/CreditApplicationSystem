@@ -5,9 +5,9 @@ namespace CreditApplicationSystem.DataAccess.CQRS.Commands
 {
     public class AddUserCommand : CommandBase<IdentityUser, IdentityUser>
     {
-        public override async Task<IdentityUser> Execute(CreditApplicationWorkflowDbContext context)
+        public override Task<IdentityUser> Execute(CreditApplicationWorkflowDbContext context)
         {
-            return Parameter;
+            return Task.FromResult(Parameter);
         }
     }
 }
