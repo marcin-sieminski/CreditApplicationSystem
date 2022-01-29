@@ -17,11 +17,6 @@ namespace CreditApplicationSystem.WebApi.Controllers
     {
         private readonly HttpClient _client = new();
 
-        //public HealthChecksController(HttpClient client)
-        //{
-        //    _client = client;
-        //}
-
         /// <summary>
         /// Health check endpoint.
         /// </summary>

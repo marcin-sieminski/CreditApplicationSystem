@@ -10,11 +10,8 @@ namespace CreditApplicationSystem.DataAccess
 {
     public class CreditApplicationWorkflowDbContext : IdentityDbContext
     {
-        private readonly ICurrentUserService _currentUserService;
-
-        public CreditApplicationWorkflowDbContext(DbContextOptions options, ICurrentUserService currentUserService) : base(options)
+        public CreditApplicationWorkflowDbContext(DbContextOptions options) : base(options)
         {
-            _currentUserService = currentUserService;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -45,19 +42,19 @@ namespace CreditApplicationSystem.DataAccess
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = _currentUserService.Email;
+                        entry.Entity.CreatedBy = string.Empty;
                         entry.Entity.Created = DateTime.UtcNow;
                         entry.Entity.StatusId = 1;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ModifiedBy = _currentUserService.Email;
+                        entry.Entity.ModifiedBy = string.Empty;
                         entry.Entity.Modified = DateTime.UtcNow;
                         break;
                     case EntityState.Deleted:
-                        entry.Entity.ModifiedBy = _currentUserService.Email;
+                        entry.Entity.ModifiedBy = string.Empty;
                         entry.Entity.Modified = DateTime.UtcNow;
                         entry.Entity.Inactivated = DateTime.UtcNow;
-                        entry.Entity.InactivatedBy = _currentUserService.Email;
+                        entry.Entity.InactivatedBy = string.Empty;
                         entry.Entity.StatusId = 0;
                         entry.State = EntityState.Modified;
                         break;

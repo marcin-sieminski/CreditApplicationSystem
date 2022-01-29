@@ -90,7 +90,6 @@ namespace CreditApplicationSystem.WebApi
                 option.DefaultChallengeScheme = "Bearer";
             }).AddJwtBearer(cfg =>
             {
-                cfg.Authority = "https://localhost:5002";
                 cfg.RequireHttpsMetadata = false;
                 cfg.SaveToken = true;
                 cfg.TokenValidationParameters = new TokenValidationParameters()
@@ -105,14 +104,6 @@ namespace CreditApplicationSystem.WebApi
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
                 .AddCookie();
                 
-            services.AddAuthorization(options => 
-                options.AddPolicy("ApiScope", policy =>
-                {
-                    policy.RequireAuthenticatedUser();
-                    policy.RequireClaim("scope", "api1");
-                }));
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
             services.AddControllers()
                 .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
@@ -151,7 +142,7 @@ namespace CreditApplicationSystem.WebApi
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers().RequireAuthorization("ApiScope");
+                endpoints.MapControllers();
                 endpoints.MapHealthChecks("api/health", new HealthCheckOptions
                 {
                     Predicate = _ => true,
