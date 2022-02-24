@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditApplicationSystem.Bla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{721B2DDB-C916-4FD6-9E76-2596F42D3E96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{9FD052A3-1A40-4F8C-906E-B8C8FE39F298}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,9 +55,17 @@ Global
 		{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E02EFCD-EFF7-4A6C-8DBE-1E49EB3F0D6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD052A3-1A40-4F8C-906E-B8C8FE39F298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD052A3-1A40-4F8C-906E-B8C8FE39F298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD052A3-1A40-4F8C-906E-B8C8FE39F298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD052A3-1A40-4F8C-906E-B8C8FE39F298}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43AF03E3-3F5F-4E22-B9BD-59F9AE092016} = {721B2DDB-C916-4FD6-9E76-2596F42D3E96}
+		{9FD052A3-1A40-4F8C-906E-B8C8FE39F298} = {721B2DDB-C916-4FD6-9E76-2596F42D3E96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01CA695E-4B4A-4B42-81E8-8C84F6B25D62}
